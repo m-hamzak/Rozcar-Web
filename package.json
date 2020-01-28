@@ -1,0 +1,42 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "express": "^4.17.1",
+    "firebase": "^5.11.1",
+    "google-maps-react": "^2.0.2",
+    "joi-browser": "^13.4.0",
+    "jquery": "^3.4.1",
+    "local-storage": "^2.0.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "path": "^0.12.7",
+    "point-in-polygon": "^1.0.1",
+    "popper.js": "^1.15.0",
+    "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-csv": "^1.1.1",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.8"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
