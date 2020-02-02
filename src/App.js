@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import AppRoute from "./components/appRoute";
 import NavBar from "./components/navbar";
 import MainForm from "./components/mainForm";
@@ -12,12 +12,16 @@ import Logout from "./components/logout";
 import VendorEquity from "./components/vendorEquity";
 import User from "./components/user";
 import ClientPage from "./components/ClientPage";
+import UserList from './components/UsersList/UserList';
+import CustomerProfile from './components/UserCompleteData/usercompletedata'
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
         <Switch>
+          <Route path="/admin/userlist/profile/:id" component ={CustomerProfile}></Route>
+        <AppRoute NavBar={NavBar} name="UserList" path="/admin/userlist" component={UserList} />
           <AppRoute NavBar={NavBar} name="register" path="/admin/register" component={MainForm} />
           <AppRoute NavBar={NavBar} name="map" path="/admin/map" component={MapInfo} />
           <AppRoute NavBar={NavBar} name="transcription" path="/admin/Transcription" component={Transcription} />
