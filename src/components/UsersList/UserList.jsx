@@ -28,7 +28,8 @@ class UserListComponent extends Component{
                 child.val()["GroupID"],
                 child.val()["Package"],
                 child.val()["ResidentialAddress"],
-                child.val()["OfficeAddress"]);
+                child.val()["OfficeAddress"],
+                child.val()["UserID"]);
                 CustomerArray.push(array);
                 array = []
             })
