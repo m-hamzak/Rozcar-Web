@@ -95,7 +95,7 @@ class MapInfo extends Component {
     //reads the location and status of each captain
     locationRef.on("value", function (snapshot) {
       snapshot.forEach(function (snap) {
-
+        console.log("ALLMAP VALUES")
         if (key.status === "All" || snap.val().Status[keyVal]) {
           let marker = {};
           marker.lat = snap.val().Latitude;
@@ -107,18 +107,18 @@ class MapInfo extends Component {
           //console.log(snap.val().CaptainID, snap.val().Status);
 
           //read token for each captain and then read info about the captain.
-
-          if (snap.val().CaptainID) {
+          console.log("key",snap.key);
+          if (snap.key) {
             tokenRef
               .orderByChild("UserID")
-              .equalTo(snap.val().CaptainID)
+              .equalTo(snap.key)
               .on("value", tokens => {
                 tokens.forEach(token => {
                   marker.token = token.val().Token;
                 });
               });
 
-            captianRef.child(snap.val().CaptainID).on("value", function (capsnap) {
+            captianRef.child(snap.key).on("value", function (capsnap) {
               marker.capname = capsnap.val().name;
               marker.capnum = capsnap.val().phone;
               marker.email = capsnap.val().email;

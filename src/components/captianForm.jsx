@@ -10,6 +10,7 @@ import config from "./../config";
 
 class CaptianForm extends Form {
   state = {
+    isSubstitute : false,
     data: {
       name: "",
       cnicNo: "",
@@ -85,6 +86,14 @@ class CaptianForm extends Form {
       .required()
       .label("Vendor Email")
   };
+
+  forsubstituteField = (e) =>{
+    e.preventDefault();
+    this.setState({
+      isSubstitute : !this.state.isSubstitute
+    })
+
+  }
 
   doSubmit = async () => {
     //server logic
@@ -193,7 +202,7 @@ class CaptianForm extends Form {
           console.log("HERE");
           if (this.state.errorMessage === "") {
             const captianid = firebase.auth().currentUser.uid;
-            this.props.saveCaptian(this.state.data, imgs, captianid, vendorID);
+            this.props.saveCaptian(this.state.data, imgs, captianid, vendorID,this.state.isSubstitute);
             this.setState({
               data: {
                 name: "",
@@ -448,6 +457,7 @@ class CaptianForm extends Form {
 
               <div className="col-6">
                 <label htmlFor="vendorEmail">Vendor Email:</label>
+                
                 <input
                   type="text"
                   name="vendorEmail"
@@ -460,7 +470,9 @@ class CaptianForm extends Form {
                 {errors.vendorEmail && (
                   <div className="alert alert-danger">{errors.vendorEmail}</div>
                 )}
+                <input type="checkbox" id="substitute" onChange={(e) => this.forsubstituteField(e)} />  Substitute Field
               </div>
+                
               <div className="input-group pb-3">
                 <div className="col-6 pt-4">
                   {this.renderButton("Register Captian")}

@@ -52,7 +52,7 @@ class MainForm extends Component {
   };
 
   //Called after submitting the captain form
-  saveCaptian = async (captain, imgs, capid, vendorID) => {
+  saveCaptian = async (captain, imgs, capid, vendorID,isSubstitute) => {
     //console.log(captain, imgs, capid, vendorID)
     let Captain = { ...captain };
     Captain.cnicFront = imgs.cnicFront;
@@ -81,9 +81,12 @@ class MainForm extends Component {
     Captain.regDate = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
 
     await firebase.database().ref("Driver2/UniqueID/Captain").child("Number").set(uniqueID.val().Number + 1);
-
+    if(isSubstitute === true){
+      await firebase.database().ref("Driver2/Substitute/").child(capid).set(Captain);
+    }else{
     await firebase.database().ref("Driver2/Captain/").child(capid).set(Captain);
-
+    }
+    
     await firebase.database().ref(`Driver2/Vendor/${Captain.vendorID}`).child("captainids").child(i).set(capid);
   };
 
