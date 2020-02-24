@@ -68,6 +68,17 @@ const NavBar = ({ routeData }) => {
                 Logout
             </NavLink>
             </li>
+
+
+
+
+
+
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/admin/Trans">
+                Trans
+              </NavLink>
+            </li>
             
 
           </ul>

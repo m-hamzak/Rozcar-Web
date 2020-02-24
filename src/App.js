@@ -15,6 +15,9 @@ import ClientPage from "./components/ClientPage";
 import UserList from './components/UsersList/UserList';
 import CustomerProfile from './components/UserCompleteData/usercompletedata'
 
+import TransRoute from './components/Trans/TransRoute'
+import Trans from './components/Trans/Trans'
+
 class App extends Component {
   render() {
     return (
@@ -27,11 +30,16 @@ class App extends Component {
           <AppRoute NavBar={NavBar} name="transcription" path="/admin/Transcription" component={Transcription} />
           <AppRoute NavBar={NavBar} name="vendors" path="/admin/vendors" component={VendorEquity} />
           <AppRoute NavBar={NavBar} name="login" path="/admin/login" component={Login} />
+          
+          <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Trans} />
+          <AppRoute NavBar={NavBar} name="transRoute" path="/admin/transRoute" component={TransRoute} />
+          
           <AppRoute NavBar={NavBar} name="logout" path="/admin/logout" component={Logout} />
           <AppRoute NavBar={NavBar} name="group" path="/admin/group/:id" component={GroupDetail} />
           <AppRoute NavBar={NavBar} name="user" path="/admin/user/:id" component={User} />
           <AppRoute NavBar={NavBar} name="admin" path="/admin" component={Landing} />
           <AppRoute NavBar={NavBar} name="client" path="/" component={ClientPage} />
+          
         </Switch>
       </React.Fragment>
     );
