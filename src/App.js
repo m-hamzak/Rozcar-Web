@@ -15,7 +15,6 @@ import ClientPage from "./components/ClientPage";
 import UserList from './components/UsersList/UserList';
 import CustomerProfile from './components/UserCompleteData/usercompletedata'
 
-import TransRoute from './components/Trans/TransRoute'
 import Trans from './components/Trans/Trans'
 
 class App extends Component {
@@ -33,7 +32,6 @@ class App extends Component {
           
           <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Transcription} />
           <AppRoute NavBar={NavBar} name = "transGroup" path="/admin/transGroup/:id" component={Trans}/> 
-          <AppRoute NavBar={NavBar} name="transRoute" path="/admin/transRoute/:id" component={TransRoute} />
           
           <AppRoute NavBar={NavBar} name="logout" path="/admin/logout" component={Logout} />
           <AppRoute NavBar={NavBar} name="group" path="/admin/group/:id" component={GroupDetail} />

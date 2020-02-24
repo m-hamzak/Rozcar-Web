@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import ScheduleModal from './ScheduleModal'
+import TimeDist from './TimeDist';
 
 class Trans extends Component{
 
@@ -64,7 +65,8 @@ class Trans extends Component{
                                     </div>
                                     <div className="row">
                                         <div className="col-md-12 col-lg-12">
-                                            <NavLink to="/admin/transRoute"><button type="button" className="btn btn-primary float-right mt-2">Set Route</button></NavLink> 
+                                            {/* <NavLink to="/admin/transRoute"><button type="button" className="btn btn-primary float-right mt-2">Set Route</button></NavLink>  */}
+                                            <TimeDist/>
                                         </div>
                                     </div>
                                 </div>
