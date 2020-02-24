@@ -69,18 +69,6 @@ const NavBar = ({ routeData }) => {
             </NavLink>
             </li>
 
-
-
-
-
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/admin/Trans">
-                Trans
-              </NavLink>
-            </li>
-            
-
           </ul>
         </div>
       </nav>

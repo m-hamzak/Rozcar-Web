@@ -2,6 +2,80 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 class TimeDist extends Component{
+    
+    constructor(){
+        super();
+        this.state = {
+            tableContent : []
+        }
+    }
+    
+    
+    componentWillMount(){
+        console.log("TimeDis",this.props.UserProfile);
+        console.log("PickUpSchedule",this.props.PickUpSchedule)
+        console.log("DropOffSchedul",this.props.DropOffSchedul)
+        console.log("PickupLocation",this.props.PickupLocation)
+        console.log("DropOffLocation",this.props.DropOffLocation)
+        for(let i = 0; i < this.props.UserProfile.length; i++){
+            this.state.tableContent.push(this.props.UserProfile[i].Name);
+        }
+    }
+
+    printValue = (User) => {
+        console.log("User",User);
+    }
+    TableContent = () => {
+        var table = [];
+        for(let i = 0; i < this.state.tableContent.length; i ++){
+            table.push(
+                <option key={i} onChange={this.printValue(this.props.UserProfile[i])} value={this.props.UserProfile[i]}>{this.state.tableContent[i]}</option>
+            )
+        }
+        return table;
+    }
+
+    setTextBoxesForRoute = () => {
+        
+        var table = [];
+        var StrClassName = "";
+        var OtherdivClassname = "";
+        var index = 1;
+        for(let i = 0; i < (this.props.PickupLocation.length * 2); i++){
+            if((i % 2) === 0){
+                StrClassName = "content-left-container";
+                OtherdivClassname = "content-left"
+            }else{
+                StrClassName = "content-right-container";
+                OtherdivClassname = "content-right"
+            }
+            table.push(
+                <div key={i} className="timeline-article">
+                    <div className={StrClassName}>
+                        <div className={OtherdivClassname}>
+                            <p>
+                                <span className="article-number">
+                                    <select className="form-control"
+                                    name={"M"+(i+1)}>
+                                        {this.TableContent()}
+                                    </select>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="meta-date">             
+                        <div className="date">                       
+                            <a href="www.facebook.com" target="_blank">
+                                <i className="fa fa-map-marker">Click here</i></a>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        return table;
+    }
+
     render(){
         return(
             <div className="container">
@@ -138,43 +212,9 @@ class TimeDist extends Component{
 
                                 {/* FIRST SEVEN SELECTS */}
 
-                                <div className="timeline-article">
-                                    <div className="content-left-container">
-                                        <div className="content-left">
-                                            <p>
-                                                <span className="article-number">
-                                                    <select className="form-control"
-                                                    name="M1">
-                                                        <option value="None">None</option>
-                                                    </select>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="meta-date">             
-                                        <div className="date">                       
-                                            <a href="www.facebook.com" target="_blank">
-                                                <i className="fa fa-map-marker">Click here</i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* LAST SELECT */}
-                                <div className="timeline-article">
-                                    <div className="content-right-container">
-                                    <div className="content-right">
-                                        <p>
-                                            <span className="article-number">
-                                                <select className="form-control"
-                                                name="M8">
-                                                    <option value="None">None</option>
-                                                </select>
-                                            </span>
-                                        </p>
-                                    </div>
-                                    </div>
-                                </div>
+                                {
+                                    this.setTextBoxesForRoute()
+                                }
                         </section>
                         
                             <button className="btn btn-primary float-right" type="submit">Done</button>
