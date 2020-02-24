@@ -70,7 +70,8 @@ class Transcription extends Component {
     } else {
       return (<NavLink
         className="nav-link grouplist"
-        to={`/admin/group/${group.ID}`}
+        to={`/admin/transGroup/${group.ID}`}
+       // to={`/admin/group/${group.ID}`}
       >
         {group.ID}
       </NavLink>
@@ -95,7 +96,7 @@ class Transcription extends Component {
                     <li key={group.ID} className="list-group-item text-center">
                       <NavLink
                         className="nav-link grouplist"
-                        to={{ pathname: `/admin/group/${group.ID}`, state: { verified: true } }}
+                        to={{ pathname: `/admin/transGroup/${group.ID}`, state: { verified: true } }}
                       >
                         {group.ID}
                       </NavLink>

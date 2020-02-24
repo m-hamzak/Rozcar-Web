@@ -31,8 +31,9 @@ class App extends Component {
           <AppRoute NavBar={NavBar} name="vendors" path="/admin/vendors" component={VendorEquity} />
           <AppRoute NavBar={NavBar} name="login" path="/admin/login" component={Login} />
           
-          <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Trans} />
-          <AppRoute NavBar={NavBar} name="transRoute" path="/admin/transRoute" component={TransRoute} />
+          <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Transcription} />
+          <AppRoute NavBar={NavBar} name = "transGroup" path="/admin/transGroup/:id" component={Trans}/> 
+          <AppRoute NavBar={NavBar} name="transRoute" path="/admin/transRoute/:id" component={TransRoute} />
           
           <AppRoute NavBar={NavBar} name="logout" path="/admin/logout" component={Logout} />
           <AppRoute NavBar={NavBar} name="group" path="/admin/group/:id" component={GroupDetail} />
