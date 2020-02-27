@@ -146,7 +146,12 @@ class Trans extends Component{
                     <div className="col-md-12 col-lg-12 mt-5">
                         <h1>Group Detail {this.props.match.params.id}</h1>
                         <button type="button" className="btn btn-primary">Lock Group</button>    
-                        {this.state.showInfoTable && <ScheduleModal show={this.state.showInfoTable} toggleSchedule={this.toggleSchedule}/>}
+                        {this.state.showInfoTable && <ScheduleModal show={this.state.showInfoTable} 
+                        toggleSchedule={this.toggleSchedule} 
+                        PickSchedule={this.state.PickUpSchedule} 
+                        DropSchedule={this.state.DropOffSchedule} 
+                        GroupID={this.props.match.params.id}
+                        UsersProfiles = {this.state.UsersProfile}/>}
                         <button onClick={this.toggleSchedule} className="btn btn-secondary ml-2">Show Schedule</button>
                            
 
@@ -177,7 +182,7 @@ class Trans extends Component{
                                             {/* <NavLink to="/admin/transRoute"><button type="button" className="btn btn-primary float-right mt-2">Set Route</button></NavLink>  */}
                                             {
                                                 this.CheckForRendering() ? <TimeDist UserProfile={this.state.UsersProfile}
-                                                                                                PickUpSchedule={this.state.PickUpLocation}
+                                                                                                PickUpSchedule={this.state.PickUpSchedule}
                                                                                                 DropOffSchedul={this.state.DropOffSchedule}
                                                                                                 PickupLocation={this.state.PickUpLocation}
                                                                                                 DropOffLocation={this.state.DropOffLocation}/> : null
