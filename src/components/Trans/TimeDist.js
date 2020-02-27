@@ -360,8 +360,25 @@ class TimeDist extends Component{
         // waiting time per pick up
         // a duration of current pick up to next pick up
         console.log("Schdule",Schedule);
+        //for distance
+        var distance = document.getElementById("ptotalDistance").value
         //for x
         var x = document.getElementById("ptotalTime").value
+        //for a1
+        var a1 = document.getElementById("pt1").value
+        //for a2
+        var a2 = document.getElementById("pt1").value
+        //for a3
+        var a3 = document.getElementById("pt1").value
+        //for sm
+        var sm = 5;
+        //for sm'
+        var smdash = 5;
+        //for waiting time
+        var waitingTime = 10;
+
+        console.log("TextValues",x,a1,a2,a3,distance);
+
         //for y
         var MondayTimes = []
         var TuesdayTimes = []
@@ -396,16 +413,60 @@ class TimeDist extends Component{
             }
         }
         
-        //for y comparing minimum time;
-        
 
-        // for(let i = 0; i < Schedule.length; i ++){
-        //     console.log("MondayMoment",Schedule[i].Monday)
-        //     console.log("MondayMoment",moment(Schedule[i].Monday, "LT").toDate())
-        //     console.log("TuesdayMoment",moment(Schedule[i].Tuesday, "LT").toDate())
-        //     console.log("FridayMoment",moment(Schedule[i].Friday, "LT").toDate())
-        //     console.log("Minimum",moment.min(moment(Schedule[i].Monday, "LT"),moment(Schedule[i].Tuesday, "LT"),moment(Schedule[i].Tuesday, "LT")))
-        // }
+
+         console.log("convertMinutes",this.timeConvert(MondayTimes[0].toDate().getHours().toString(),MondayTimes[0].toDate().getMinutes().toString()))
+    //    console.log("COnverted",this.timeConvert(MondayTimes[0].toDate())
+    //     var diff = MondayTimes[0].subtract(waitingTime, 'minutes').toDate();
+    //     console.log("Minute",this.timeConvert(diff.getHours().toString(),diff.getMinutes().toString()))
+        
+        //for y comparing minimum time;
+        var minArray = {
+            Monday : moment.min(MondayTimes),
+            Tuesday : moment.min(TuesdayTimes),
+            Wednesday : moment.min(WednesdayTimes),
+            Thursday : moment.min(ThursdayTimes),
+            Friday : moment.min(FridayTimes),
+            Saturday : moment.min(SaturdayTimes),
+            Sunday : moment.min(SundayTimes), 
+        }
+
+        var pt1 = minArray.Monday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+        var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+        console.log("PT1",prin)
+        var pt2 = pt1.add(waitingTime, "minutes").add(a1,"minutes")
+        var prin1 = this.timeConvert(pt2.toDate().getHours().toString(),pt2.toDate().getMinutes().toString());
+        console.log("PT2",prin1)
+        var pt3 = pt2.add(waitingTime, "minutes").add(a2,"minutes")
+        var prin2 = this.timeConvert(pt3.toDate().getHours().toString(),pt3.toDate().getMinutes().toString());
+        console.log("PT3",prin2)
+        var pt4 = pt1.add(waitingTime, "minutes").add(a3,"minutes")
+        var prin3 = this.timeConvert(pt4.toDate().getHours().toString(),pt4.toDate().getMinutes().toString());
+        console.log("PT4",prin3)
+        console.log("MinArray",minArray)
+    }
+    timeConvert(Hours,Minutes) {
+        var makeTime = ""
+        if(Hours.length === 1){
+            makeTime = "0"+Hours
+        }else{
+            makeTime = Hours
+        }
+        makeTime += ":"
+      //  console.log("length" + Minutes.length)
+        if(Minutes.length === 1){
+            makeTime += "0"+Minutes
+        }else{
+            makeTime += Minutes
+        }
+        var amPm = ""
+        if(Number(Hours) > 12){
+            amPm = "PM"
+        }else{
+            amPm = "AM"
+        }
+        makeTime += " " + amPm
+        return makeTime;
     }
 
     render(){
