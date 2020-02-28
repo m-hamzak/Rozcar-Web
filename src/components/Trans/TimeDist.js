@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import moment from "moment";
+import SingleScheduleModel from './SingleScheduleModel'
 
 class TimeDist extends Component{
     
     constructor(){
         super();
         this.state = {
+            showInfoTable: false,
             tableContent : [],
             MembersUser : [],
             MemberCounter : 1,
             PickRadioBtn : true,
             PickRoute : [],
+            NewPickSchedule : [],
             DropRoute : [],
+            NewDropSchedule : [],
         }
     }
 
@@ -352,24 +356,25 @@ class TimeDist extends Component{
         
     }
 
-    setNewPickSchedule = (Schedule) => {
+    setNewPickSchedule = (Schedule,ID) => {
         // var x for total journey Time from pick1 to drop4
         // var y least time from all members
         //sm safety margin
         //sm' safety margin dash
         // waiting time per pick up
         // a duration of current pick up to next pick up
+        var newschedule = [];
         console.log("Schdule",Schedule);
         //for distance
         var distance = document.getElementById("ptotalDistance").value
         //for x
         var x = document.getElementById("ptotalTime").value
+        x = Number(x)
         //for a1
-        var a1 = document.getElementById("pt1").value
-        //for a2
-        var a2 = document.getElementById("pt1").value
-        //for a3
-        var a3 = document.getElementById("pt1").value
+        var a = []
+        for(let p = 0; p < this.props.UserProfile.length - 1; p ++){
+            a.push(document.getElementById(ID+(p+1)).value)
+        }
         //for sm
         var sm = 5;
         //for sm'
@@ -377,7 +382,7 @@ class TimeDist extends Component{
         //for waiting time
         var waitingTime = 10;
 
-        console.log("TextValues",x,a1,a2,a3,distance);
+
 
         //for y
         var MondayTimes = []
@@ -393,22 +398,22 @@ class TimeDist extends Component{
             if(Schedule[i].Monday !== ""){
                 MondayTimes.push(moment(Schedule[i].Monday,"LT"))
             }
-            if(Schedule[i].Monday !== ""){
+            if(Schedule[i].Tuesday !== ""){
                 TuesdayTimes.push(moment(Schedule[i].Tuesday,"LT"))
             }
-            if(Schedule[i].Monday !== ""){
+            if(Schedule[i].Wednesday !== ""){
                 WednesdayTimes.push(moment(Schedule[i].Wednesday,"LT"))
             }
-            if(Schedule[i].Monday !== ""){
+            if(Schedule[i].thursday !== ""){
                 ThursdayTimes.push(moment(Schedule[i].thursday,"LT"))
             }
-            if(Schedule[i].Monday !== ""){
+            if(Schedule[i].Friday !== ""){
                 FridayTimes.push(moment(Schedule[i].Friday,"LT"))
             }
-            if(Schedule[i].Monday !== ""){
+            if(Schedule[i].Saturday !== ""){
                 SaturdayTimes.push(moment(Schedule[i].Saturday,"LT"))
             }
-            if(Schedule[i].Monday !== ""){
+            if(Schedule[i].Sunday !== ""){
                 SundayTimes.push(moment(Schedule[i].Sunday,"LT"))
             }
         }
@@ -430,23 +435,193 @@ class TimeDist extends Component{
             Saturday : moment.min(SaturdayTimes),
             Sunday : moment.min(SundayTimes), 
         }
+        
+        if(Schedule[0].Monday != ""){
+            console.log("For Monday",minArray.Monday)
+            var pt1 = minArray.Monday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+            console.log("0",prin)
+            var mapObj = []
+            mapObj.push(prin)
+            var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
+            var prin = this.timeConvert(t.toDate().getHours().toString()
+            ,t.toDate().getMinutes().toString());
+            mapObj.push(prin)
+            console.log("1", prin)
+            for(var m = 1; m < this.props.UserProfile.length - 1; m ++){
+                t = t.add(waitingTime, "minutes").add(a[m],"minutes")
+                var prin = this.timeConvert(t.toDate().getHours().toString()
+                ,t.toDate().getMinutes().toString());
+                console.log((m+1)+"", prin)
+                var index = (m+1)+""
+                mapObj.push(prin)
+            }
+      //      console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }
+        if(Schedule[0].Tuesday != ""){
+            console.log("For Tuesday",minArray.Tuesday)
+            var pt1 = minArray.Tuesday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+            console.log("0",prin)
 
-        var pt1 = minArray.Monday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
-        var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
-        console.log("PT1",prin)
-        var pt2 = pt1.add(waitingTime, "minutes").add(a1,"minutes")
-        var prin1 = this.timeConvert(pt2.toDate().getHours().toString(),pt2.toDate().getMinutes().toString());
-        console.log("PT2",prin1)
-        var pt3 = pt2.add(waitingTime, "minutes").add(a2,"minutes")
-        var prin2 = this.timeConvert(pt3.toDate().getHours().toString(),pt3.toDate().getMinutes().toString());
-        console.log("PT3",prin2)
-        var pt4 = pt1.add(waitingTime, "minutes").add(a3,"minutes")
-        var prin3 = this.timeConvert(pt4.toDate().getHours().toString(),pt4.toDate().getMinutes().toString());
-        console.log("PT4",prin3)
+            var mapObj = []
+            mapObj.push(prin)
+            var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
+            var prin = this.timeConvert(t.toDate().getHours().toString()
+            ,t.toDate().getMinutes().toString());
+            mapObj.push(prin)
+            console.log("1", prin)
+            for(var m = 1; m < this.props.UserProfile.length - 1; m ++){
+                t = t.add(waitingTime, "minutes").add(a[m],"minutes")
+                var prin = this.timeConvert(t.toDate().getHours().toString()
+                ,t.toDate().getMinutes().toString());
+                console.log((m+1)+"", prin)
+                var index = (m+1)+""
+                mapObj.push(prin)
+            }
+      //      console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }
+        if(Schedule[0].Wednesday != ""){
+            console.log("For Wednesday",minArray.Wednesday)
+            var pt1 = minArray.Wednesday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+            console.log("0",prin)
+            var mapObj = []
+            mapObj.push(prin)
+            var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
+            var prin = this.timeConvert(t.toDate().getHours().toString()
+            ,t.toDate().getMinutes().toString());
+            mapObj.push(prin)
+            console.log("1", prin)
+            for(var m = 1; m < this.props.UserProfile.length - 1; m ++){
+                t = t.add(waitingTime, "minutes").add(a[m],"minutes")
+                var prin = this.timeConvert(t.toDate().getHours().toString()
+                ,t.toDate().getMinutes().toString());
+                console.log((m+1)+"", prin)
+                var index = (m+1)+""
+                mapObj.push(prin)
+            }
+     //       console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }
+        if(Schedule[0].thursday != ""){
+            console.log("For thursday",minArray.Thursday)
+            var pt1 = minArray.Thursday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+            console.log("0",prin)
+            var mapObj = []
+            mapObj.push(prin)
+            var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
+            var prin = this.timeConvert(t.toDate().getHours().toString()
+            ,t.toDate().getMinutes().toString());
+            mapObj.push(prin)
+            console.log("1", prin)
+            for(var m = 1; m < this.props.UserProfile.length - 1; m ++){
+                t = t.add(waitingTime, "minutes").add(a[m],"minutes")
+                var prin = this.timeConvert(t.toDate().getHours().toString()
+                ,t.toDate().getMinutes().toString());
+                console.log((m+1)+"", prin)
+                var index = (m+1)+""
+                mapObj.push(prin)
+            }
+        //    console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }
+        if(Schedule[0].Friday != ""){
+            console.log("For Friday",minArray.Friday)
+            var pt1 = minArray.Friday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+            console.log("0",prin)
+            var mapObj = []
+            mapObj.push(prin)
+            var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
+            var prin = this.timeConvert(t.toDate().getHours().toString()
+            ,t.toDate().getMinutes().toString());
+            mapObj.push(prin)
+            console.log("1", prin)
+            for(var m = 1; m < this.props.UserProfile.length - 1; m ++){
+                t = t.add(waitingTime, "minutes").add(a[m],"minutes")
+                var prin = this.timeConvert(t.toDate().getHours().toString()
+                ,t.toDate().getMinutes().toString());
+                console.log((m+1)+"", prin)
+                var index = (m+1)+""
+                mapObj.push(prin)
+            }
+          //  console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }
+        if(Schedule[0].Saturday != ""){
+            console.log("For Saturday",minArray.Saturday)
+            var pt1 = minArray.Saturday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+            console.log("0",prin)
+            var mapObj = []
+            mapObj.push(prin)
+            var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
+            var prin = this.timeConvert(t.toDate().getHours().toString()
+            ,t.toDate().getMinutes().toString());
+            mapObj.push(prin)
+            console.log("1", prin)
+            for(var m = 1; m < this.props.UserProfile.length - 1; m ++){
+                t = t.add(waitingTime, "minutes").add(a[m],"minutes")
+                var prin = this.timeConvert(t.toDate().getHours().toString()
+                ,t.toDate().getMinutes().toString());
+                console.log((m+1)+"", prin)
+                var index = (m+1)+""
+                mapObj.push(prin)
+            }
+       //     console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }
+        if(Schedule[0].Sunday != ""){
+            console.log("For Sunday",minArray.Sunday)
+            var pt1 = minArray.Sunday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
+            console.log("0",prin)
+            var mapObj = []
+            mapObj.push(prin)
+            var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
+            var prin = this.timeConvert(t.toDate().getHours().toString()
+            ,t.toDate().getMinutes().toString());
+            mapObj.push(prin)
+            console.log("1", prin)
+            for(var m = 1; m < this.props.UserProfile.length - 1; m ++){
+                t = t.add(waitingTime, "minutes").add(a[m],"minutes")
+                var prin = this.timeConvert(t.toDate().getHours().toString()
+                ,t.toDate().getMinutes().toString());
+                console.log((m+1)+"", prin)
+                var index = (m+1)+""
+                mapObj.push(prin)
+            }
+       //     console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }
+
+
+        // var pt2 = pt1.add(waitingTime, "minutes").add(a1,"minutes")
+        // var prin1 = this.timeConvert(pt2.toDate().getHours().toString(),pt2.toDate().getMinutes().toString());
+        // console.log("PT2",prin1)
+        // var pt3 = pt2.add(waitingTime, "minutes").add(a2,"minutes")
+        // var prin2 = this.timeConvert(pt3.toDate().getHours().toString(),pt3.toDate().getMinutes().toString());
+        // console.log("PT3",prin2)
+        // var pt4 = pt3.add(waitingTime, "minutes").add(a3,"minutes")
+        // var prin3 = this.timeConvert(pt4.toDate().getHours().toString(),pt4.toDate().getMinutes().toString());
+        // console.log("PT4",prin3)
         console.log("MinArray",minArray)
+        console.log("New Schedule",newschedule)
+        this.toggleSchedule()
     }
     timeConvert(Hours,Minutes) {
         var makeTime = ""
+        var amPm = ""
+        if(Number(Hours) > 12){
+            Hours = (Number(Hours) - 12) + ""
+            amPm = "PM"
+        }else{
+            amPm = "AM"
+        }
         if(Hours.length === 1){
             makeTime = "0"+Hours
         }else{
@@ -459,14 +634,36 @@ class TimeDist extends Component{
         }else{
             makeTime += Minutes
         }
-        var amPm = ""
-        if(Number(Hours) > 12){
-            amPm = "PM"
-        }else{
-            amPm = "AM"
-        }
+        
         makeTime += " " + amPm
         return makeTime;
+    }
+
+
+    showTimesInputBetweenMembers(ID){
+        var table  = [];
+        for(let i = 0; i < this.props.UserProfile.length - 1; i ++){
+            table.push(
+                <div key = {i} className="input-group pb-4">
+                    <div className="col-2">
+                        <h6>{"M"+(i+1)+"-"+"M"+(i+2)}</h6>
+                    </div>
+                    <div className="col-5">
+                        <input className="form-control"
+                        type="text"
+                        name="t1"
+                        id={ID+(i+1)}
+                        placeholder="60 (in mins)" required/>
+                    </div>
+                </div>
+            )
+        }
+        return table;
+        
+    }
+
+    toggleSchedule = () => {
+        this.setState({ showInfoTable: !this.state.showInfoTable });
     }
 
     render(){
@@ -504,52 +701,16 @@ class TimeDist extends Component{
                                 </div>
                             </div>
 
-
-
-                            <div className="input-group pb-4">
-                                <div className="col-2">
-                                    <h6>M1-M2</h6>
-                                </div>
-                                <div className="col-5">
-                                    <input className="form-control"
-                                    type="text"
-                                    name="t1"
-                                    id="pt1"
-                                    placeholder="60 (in mins)" required/>
-                                </div>
-                            </div>
-
-
-                            <div className="input-group pb-4">
-                                <div className="col-2">
-                                    <h6>M2-M3</h6>
-                                </div>
-                                <div className="col-5">
-                                    <input className="form-control"
-                                    type="text"
-                                    name="t2"
-                                    id="pt2"
-                                    placeholder="60 (in mins)" required/>
-                                </div>
-                            </div>
-
-
-                            <div className="input-group pb-4">
-                                <div className="col-2">
-                                    <h6>M3-M4</h6>
-                                </div>
-                                <div className="col-5">
-                                    <input className="form-control"
-                                    type="text"
-                                    name="t3"
-                                    id="pt3"
-                                    placeholder="60 (in mins)" required/>
-                                </div>
-                            </div>
+                            {
+                                this.showTimesInputBetweenMembers("pt")
+                            }
                         </div>
+                                {this.state.showInfoTable && <SingleScheduleModel show={this.state.showInfoTable} 
+                                toggleSchedule={this.toggleSchedule}
+                                UsersProfiles = {this.state.UsersProfile}/>}
 
                         <div className="card-footer">
-                            <button type="button" onClick={(e) => this.setNewPickSchedule(this.props.PickUpSchedule)} className="btn btn-primary float-right mt-2">Submit</button>
+                            <button type="button" onClick={(e) => this.setNewPickSchedule(this.props.PickUpSchedule,"pt")} className="btn btn-primary float-right mt-2">Submit</button>
                         </div>
                         </div>
                     </div>
@@ -625,49 +786,9 @@ class TimeDist extends Component{
                                     placeholder="50 (in meters)" required/>
                                 </div>
                             </div>
-
-
-
-                            <div className="input-group pb-4">
-                                <div className="col-2">
-                                    <h6>M1-M2</h6>
-                                </div>
-                                <div className="col-5">
-                                    <input className="form-control"
-                                    type="text"
-                                    name="t1"
-                                    id="dt1"
-                                    placeholder="60 (in mins)" required/>
-                                </div>
-                            </div>
-
-
-                            <div className="input-group pb-4">
-                                <div className="col-2">
-                                    <h6>M2-M3</h6>
-                                </div>
-                                <div className="col-5">
-                                    <input className="form-control"
-                                    type="text"
-                                    name="t2"
-                                    id="dt2"
-                                    placeholder="60 (in mins)" required/>
-                                </div>
-                            </div>
-
-
-                            <div className="input-group pb-4">
-                                <div className="col-2">
-                                    <h6>M3-M4</h6>
-                                </div>
-                                <div className="col-5">
-                                    <input className="form-control"
-                                    type="text"
-                                    name="t3"
-                                    id="dt3"
-                                    placeholder="60 (in mins)" required/>
-                                </div>
-                            </div>
+                            {
+                                this.showTimesInputBetweenMembers("dt")
+                            }
                         </div>
 
                         <div className="card-footer">

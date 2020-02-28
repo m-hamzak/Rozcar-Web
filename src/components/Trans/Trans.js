@@ -126,7 +126,7 @@ class Trans extends Component{
         for(let i = 0; i < UserInfo.length; i++){
             table.push(
                 <tr key={i}> 
-                    <th>{UserInfo[i].Name + UserInfo[i].LastName}</th>
+                    <th>{UserInfo[i].Name + " " + UserInfo[i].LastName}</th>
                     <th>{UserInfo[i].ResidentialAddress}</th>
                     <th>{UserInfo[i].OfficeAddress}</th>
                 </tr>
