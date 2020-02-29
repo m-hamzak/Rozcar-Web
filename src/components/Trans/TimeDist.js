@@ -17,6 +17,9 @@ class TimeDist extends Component{
             NewPickSchedule : [],
             DropRoute : [],
             NewDropSchedule : [],
+            NewSchedule : [],
+            NewScheduleTime : "",
+            NewRoute : [],
         }
     }
 
@@ -46,7 +49,7 @@ class TimeDist extends Component{
                 MemberNo : "M1",
                 Position : position, 
                 UID : this.props.UserProfile[index].UserID,
-                Name : this.props.UserProfile[index].Name
+                Name : this.props.UserProfile[index].Name + " " +this.props.UserProfile[index].LastName 
             }
             this.state.MembersUser.push(HashMap);
             for(let k = 0; k < this.state.MembersUser.length - 1; k ++){
@@ -71,7 +74,7 @@ class TimeDist extends Component{
                             MemberNo : memberno,
                             Position : position,
                             UID : this.props.UserProfile[index].UserID,
-                            Name : this.props.UserProfile[index].Name
+                            Name : this.props.UserProfile[index].Name + " " +this.props.UserProfile[index].LastName 
                         }
                     //    console.log("state",this.state.MembersUser[k]);
                      //   update(this.state.MembersUser,{$splice:[k,1,mapObj]})
@@ -87,7 +90,7 @@ class TimeDist extends Component{
                 MemberNo : "M"+MemberCounter,
                 Position : position,
                 UID : this.props.UserProfile[index].UserID,
-                Name : this.props.UserProfile[index].Name
+                Name : this.props.UserProfile[index].Name + " " +this.props.UserProfile[index].LastName 
             }
             this.state.MembersUser.push(HashMap);
             this.setState({
@@ -173,12 +176,14 @@ class TimeDist extends Component{
             console.log("PickRoute",pickroute);
             console.log("MembersUser",this.state.MembersUser)
             this.setState({
-                PickRoute : pickroute
+                PickRoute : pickroute,
+                NewRoute : pickroute
             })
         }else{
             console.log("DropRoute",pickroute);
             this.setState({
-                DropRoute : pickroute
+                DropRoute : pickroute,
+                NewRoute : pickroute
             })
         }
         this.getWholeGooglePath(pickroute)
@@ -356,7 +361,7 @@ class TimeDist extends Component{
         
     }
 
-    setNewPickSchedule = (Schedule,ID) => {
+    setNewPickSchedule = (Schedule,ID,TimeID,DistanceID) => {
         // var x for total journey Time from pick1 to drop4
         // var y least time from all members
         //sm safety margin
@@ -366,9 +371,9 @@ class TimeDist extends Component{
         var newschedule = [];
         console.log("Schdule",Schedule);
         //for distance
-        var distance = document.getElementById("ptotalDistance").value
+        var distance = document.getElementById(DistanceID).value
         //for x
-        var x = document.getElementById("ptotalTime").value
+        var x = document.getElementById(TimeID).value
         x = Number(x)
         //for a1
         var a = []
@@ -425,23 +430,42 @@ class TimeDist extends Component{
     //     var diff = MondayTimes[0].subtract(waitingTime, 'minutes').toDate();
     //     console.log("Minute",this.timeConvert(diff.getHours().toString(),diff.getMinutes().toString()))
         
-        //for y comparing minimum time;
-        var minArray = {
-            Monday : moment.min(MondayTimes),
-            Tuesday : moment.min(TuesdayTimes),
-            Wednesday : moment.min(WednesdayTimes),
-            Thursday : moment.min(ThursdayTimes),
-            Friday : moment.min(FridayTimes),
-            Saturday : moment.min(SaturdayTimes),
-            Sunday : moment.min(SundayTimes), 
+        //for y comparing minimum or maximum time;
+        var minArray
+        if(ID === "pt"){
+            minArray = {
+                Monday : moment.min(MondayTimes),
+                Tuesday : moment.min(TuesdayTimes),
+                Wednesday : moment.min(WednesdayTimes),
+                Thursday : moment.min(ThursdayTimes),
+                Friday : moment.min(FridayTimes),
+                Saturday : moment.min(SaturdayTimes),
+                Sunday : moment.min(SundayTimes), 
+            }
+        }else{
+            minArray = {
+                Monday : moment.max(MondayTimes),
+                Tuesday : moment.max(TuesdayTimes),
+                Wednesday : moment.max(WednesdayTimes),
+                Thursday : moment.max(ThursdayTimes),
+                Friday : moment.max(FridayTimes),
+                Saturday : moment.max(SaturdayTimes),
+                Sunday : moment.max(SundayTimes), 
+            }
         }
         
         if(Schedule[0].Monday != ""){
             console.log("For Monday",minArray.Monday)
-            var pt1 = minArray.Monday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            var pt1;
+            if(ID === "pt"){
+                pt1 = minArray.Monday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            }else{
+                pt1 = minArray.Monday.subtract((sm + smdash),"minutes")
+            }
             var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
             console.log("0",prin)
             var mapObj = []
+            mapObj.push("Monday")
             mapObj.push(prin)
             var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
             var prin = this.timeConvert(t.toDate().getHours().toString()
@@ -457,15 +481,28 @@ class TimeDist extends Component{
                 mapObj.push(prin)
             }
       //      console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }else{
+            var mapObj = []
+            mapObj.push("Monday")
+            for(let i = 0; i < this.props.UserProfile.length; i++){
+                mapObj.push("")
+            }
             newschedule.push(mapObj)
         }
         if(Schedule[0].Tuesday != ""){
             console.log("For Tuesday",minArray.Tuesday)
-            var pt1 = minArray.Tuesday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var pt1;
+            if(ID === "pt"){
+                pt1 = minArray.Tuesday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            }else{
+                pt1 = minArray.Tuesday.subtract((sm + smdash),"minutes")
+            }            
             var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
             console.log("0",prin)
 
             var mapObj = []
+            mapObj.push("Tuesday")
             mapObj.push(prin)
             var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
             var prin = this.timeConvert(t.toDate().getHours().toString()
@@ -482,13 +519,26 @@ class TimeDist extends Component{
             }
       //      console.log("MapObj",mapObj);
             newschedule.push(mapObj)
+        }else{
+            var mapObj = []
+            mapObj.push("Tuesday")
+            for(let i = 0; i < this.props.UserProfile.length; i++){
+                mapObj.push("")
+            }
+            newschedule.push(mapObj)
         }
         if(Schedule[0].Wednesday != ""){
             console.log("For Wednesday",minArray.Wednesday)
-            var pt1 = minArray.Wednesday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var pt1;
+            if(ID === "pt"){
+                pt1 = minArray.Wednesday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            }else{
+                pt1 = minArray.Wednesday.subtract((sm + smdash),"minutes")
+            }           
             var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
             console.log("0",prin)
             var mapObj = []
+            mapObj.push("Wednesday")
             mapObj.push(prin)
             var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
             var prin = this.timeConvert(t.toDate().getHours().toString()
@@ -505,13 +555,26 @@ class TimeDist extends Component{
             }
      //       console.log("MapObj",mapObj);
             newschedule.push(mapObj)
+        }else{
+            var mapObj = []
+            mapObj.push("Wednesday")
+            for(let i = 0; i < this.props.UserProfile.length; i++){
+                mapObj.push("")
+            }
+            newschedule.push(mapObj)
         }
         if(Schedule[0].thursday != ""){
             console.log("For thursday",minArray.Thursday)
-            var pt1 = minArray.Thursday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var pt1;
+            if(ID === "pt"){
+                pt1 = minArray.Thursday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            }else{
+                pt1 = minArray.Thursday.subtract((sm + smdash),"minutes")
+            }
             var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
             console.log("0",prin)
             var mapObj = []
+            mapObj.push("Thursday")
             mapObj.push(prin)
             var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
             var prin = this.timeConvert(t.toDate().getHours().toString()
@@ -528,13 +591,26 @@ class TimeDist extends Component{
             }
         //    console.log("MapObj",mapObj);
             newschedule.push(mapObj)
+        }else{
+            var mapObj = []
+            mapObj.push("Thursday")
+            for(let i = 0; i < this.props.UserProfile.length; i++){
+                mapObj.push("")
+            }
+            newschedule.push(mapObj)
         }
         if(Schedule[0].Friday != ""){
             console.log("For Friday",minArray.Friday)
-            var pt1 = minArray.Friday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var pt1;
+            if(ID === "pt"){
+                pt1 = minArray.Friday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            }else{
+                pt1 = minArray.Friday.subtract((sm + smdash),"minutes")
+            }
             var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
             console.log("0",prin)
             var mapObj = []
+            mapObj.push("Friday")
             mapObj.push(prin)
             var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
             var prin = this.timeConvert(t.toDate().getHours().toString()
@@ -551,13 +627,26 @@ class TimeDist extends Component{
             }
           //  console.log("MapObj",mapObj);
             newschedule.push(mapObj)
+        }else{
+            var mapObj = []
+            mapObj.push("Friday")
+            for(let i = 0; i < this.props.UserProfile.length; i++){
+                mapObj.push("")
+            }
+            newschedule.push(mapObj)
         }
         if(Schedule[0].Saturday != ""){
             console.log("For Saturday",minArray.Saturday)
-            var pt1 = minArray.Saturday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var pt1;
+            if(ID === "pt"){
+                pt1 = minArray.Saturday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            }else{
+                pt1 = minArray.Saturday.subtract((sm + smdash),"minutes")
+            }
             var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
             console.log("0",prin)
             var mapObj = []
+            mapObj.push("Saturday")
             mapObj.push(prin)
             var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
             var prin = this.timeConvert(t.toDate().getHours().toString()
@@ -574,13 +663,26 @@ class TimeDist extends Component{
             }
        //     console.log("MapObj",mapObj);
             newschedule.push(mapObj)
+        }else{
+            var mapObj = []
+            mapObj.push("Saturday")
+            for(let i = 0; i < this.props.UserProfile.length; i++){
+                mapObj.push("")
+            }
+            newschedule.push(mapObj)
         }
         if(Schedule[0].Sunday != ""){
             console.log("For Sunday",minArray.Sunday)
-            var pt1 = minArray.Sunday.subtract(x,"minutes").subtract((sm + 3*(smdash)));
+            var pt1;
+            if(ID === "pt"){
+                pt1 = minArray.Sunday.subtract(x,"minutes").subtract((sm + 3*(smdash)),"minutes");
+            }else{
+                pt1 = minArray.Sunday.subtract((sm + smdash),"minutes")
+            }
             var prin = this.timeConvert(pt1.toDate().getHours().toString(),pt1.toDate().getMinutes().toString());
             console.log("0",prin)
             var mapObj = []
+            mapObj.push("Sunday")
             mapObj.push(prin)
             var t = pt1.add(waitingTime,"minutes").add(a[0],"minutes")
             var prin = this.timeConvert(t.toDate().getHours().toString()
@@ -592,10 +694,16 @@ class TimeDist extends Component{
                 var prin = this.timeConvert(t.toDate().getHours().toString()
                 ,t.toDate().getMinutes().toString());
                 console.log((m+1)+"", prin)
-                var index = (m+1)+""
                 mapObj.push(prin)
             }
        //     console.log("MapObj",mapObj);
+            newschedule.push(mapObj)
+        }else{
+            var mapObj = []
+            mapObj.push("Sunday")
+            for(let i = 0; i < this.props.UserProfile.length; i++){
+                mapObj.push("")
+            }
             newschedule.push(mapObj)
         }
 
@@ -611,6 +719,19 @@ class TimeDist extends Component{
         // console.log("PT4",prin3)
         console.log("MinArray",minArray)
         console.log("New Schedule",newschedule)
+        if(ID === "pt"){
+            this.setState({
+                NewPickSchedule : newschedule,
+                NewSchedule : newschedule,
+                NewScheduleTime : "Pick"
+            })
+        }else{
+            this.setState({
+                NewDropSchedule : newschedule,
+                NewSchedule : newschedule,
+                NewScheduleTime : "Drop"
+            })
+        }
         this.toggleSchedule()
     }
     timeConvert(Hours,Minutes) {
@@ -666,6 +787,10 @@ class TimeDist extends Component{
         this.setState({ showInfoTable: !this.state.showInfoTable });
     }
 
+    MakeFinalGroup = () => {
+
+    }
+
     render(){
         return(
             <div className="container">
@@ -707,10 +832,13 @@ class TimeDist extends Component{
                         </div>
                                 {this.state.showInfoTable && <SingleScheduleModel show={this.state.showInfoTable} 
                                 toggleSchedule={this.toggleSchedule}
-                                UsersProfiles = {this.state.UsersProfile}/>}
+                                UsersProfiles = {this.props.UserProfile}
+                                Schedule = {this.state.NewSchedule}
+                                Route = {this.state.NewRoute}
+                                scheduleTime = {this.state.NewScheduleTime}/>}
 
                         <div className="card-footer">
-                            <button type="button" onClick={(e) => this.setNewPickSchedule(this.props.PickUpSchedule,"pt")} className="btn btn-primary float-right mt-2">Submit</button>
+                            <button type="button" onClick={(e) => this.setNewPickSchedule(this.props.PickUpSchedule,"pt","ptotalTime","ptotalDistance")} className="btn btn-primary float-right mt-2">Submit</button>
                         </div>
                         </div>
                     </div>
@@ -747,11 +875,10 @@ class TimeDist extends Component{
                                 }
                         </section>
                         
-                            <button className="btn btn-primary float-right" type="submit">Done</button>
+                            <button onClick={(e) => this.MakeFinalGroup()} className="btn btn-primary float-right" type="submit">Done</button>
                             {/*Link to generate the complete route*/}
-                            <a href="www.facebook.com" target="_blank"
-                            rel="noopener noreferrer" className="btn btn-primary float-right mr-2">Generate</a>
-                            <button type="button"onClick={(e) => this.pickRoute()}  className="btn btn-danger float-right mr-2">Reject</button>
+                            <button type="button" onClick={(e) => this.pickRoute()}className="btn btn-primary float-right mr-2">Generate</button>
+                            <button type="button" className="btn btn-danger float-right mr-2">Reject</button>
                     </div>
 
                 </div>
@@ -792,7 +919,7 @@ class TimeDist extends Component{
                         </div>
 
                         <div className="card-footer">
-                            <button type="button" className="btn btn-primary float-right mt-2">Submit</button>
+                            <button type="button" onClick={(e) => this.setNewPickSchedule(this.props.DropOffSchedul,"dt","dtotalTime","dtotalDistance")} className="btn btn-primary float-right mt-2">Submit</button>
                         </div>
                         </div>
                     </div>

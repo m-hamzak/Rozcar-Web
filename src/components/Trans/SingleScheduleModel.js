@@ -18,44 +18,69 @@ class ScheduleModal extends Component{
           data:[],
       }
       componentWillMount(){
-      //  this.setData(this.props.PickSchedule)
+        this.getSchedule(this.props.Schedule)
       }
+
+    getSchedule(schedule){
+        var temp = []
+        console.log("ROUTEEEE",this.props.Route)
+        for(let m = 0; m < this.props.Route.length; m ++){
+            if(this.props.Route[m].status === this.props.scheduleTime){
+                temp.push(this.props.Route[m]);
+            }
+        }
+        var tab = [];
+        for(let i = 0; i < temp.length; i ++){
+            var mapObj = {
+                MemberName : temp[i].Name,
+                mon : schedule[0][i+1],
+                tue : schedule[1][i+1],
+                wed : schedule[2][i+1],
+                thrs : schedule[3][i+1],
+                fri : schedule[4][i+1],
+                sat : schedule[5][i+1],
+                sun : schedule[6][i+1],
+            }
+            tab.push(mapObj)
+        }
+        this.setState({
+            data : tab
+        })
+        console.log("Tab",tab)
+
+
+        // for(let i = 0; i < schedule.length; i ++){
+        //     var mapObj;
+        //     for(let j = 1; j < schedule[i].length; j ++){
+        //         var statusDay = schedule[i][0]
+        //         mapObj = {
+        //             UserMembers : this.props.UserMembers[(j-1)],
+        //             time : schedule[i][j],
+        //             status : statusDay
+        //         }
+        //         tab.push(mapObj)
+        //     }
+            
+        // }
+    }
 
     onModalClick = () => {
         this.props.toggleSchedule();
       }
-    
-    // setData(Schedule){
-    //     var Table = [];
-    //     for(let i = 0; i < this.props.UsersProfiles.length; i ++){
-    //         var mapObj = {
-    //             MemberName : this.props.UsersProfiles[i].Name + this.props.UsersProfiles[i].LastName,
-    //             mon : Schedule[i].Monday,
-    //             tue : Schedule[i].Tuesday,
-    //             wed : Schedule[i].Wednesday,
-    //             thrs : Schedule[i].thursday,
-    //             fri : Schedule[i].Friday,
-    //             sat : Schedule[i].Saturday,
-    //             sun : Schedule[i].Sunday,
-    //         }
-    //         Table.push(mapObj)
-    //     }
-    //     this.setState({
-    //         data : Table
-    //     })
-    // }
 
     render(){
         console.log("Schedule",this.props.Schedule)
         console.log("ScehdulePickOrDrop",this.props.scheduleTime)
+        console.log("MemberUsers",this.props.UserMembers)
         console.log("UsersProfiles",this.props.UsersProfiles)
+        console.log("ROUTEEEE",this.props.Route)
         return(
             
             <div className="container">
                 <Modal show={this.props.show} onHide={this.onModalClick}>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            Schedule for Group {this.props.GroupID}
+                            {this.props.scheduleTime} Schedule
                         </Modal.Title>
                     </Modal.Header>
 
