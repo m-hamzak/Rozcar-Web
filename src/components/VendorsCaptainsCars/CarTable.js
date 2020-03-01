@@ -10,7 +10,7 @@ class CarTable extends Component {
         this.$el.click( (e) => {
             e.preventDefault();
             console.log("Clicked Item",e.toElement.textContent);
-            this.getUserID(e.toElement.textContent,this.props.data,this.props.IDdata);
+            this.getUserID(e.toElement.textContent,this.props.data);
             
         })  
         this.$el.DataTable({
@@ -19,18 +19,16 @@ class CarTable extends Component {
                 {title : 'Registration No.'},
                 {title : "Color"},
                 {title : "Model"},
-                {title : 'Phone Number'},
-                {title : 'CNIC'},
-                {title : "IBan"},
+                {title : 'Car Model'}
                 ]
         })
     }
-    getUserID(email,array,ID){
-        console.log("email",email)
+    getUserID(regNo,array,){
+        console.log("regNo",regNo)
         console.log("array",array[0][1])
         for(var i=0; i < array.length; i++){
-            if(email === array[i][2]){
-                this.props.history.push(`/admin/vendors/${ID[i][0]}`)
+            if(regNo === array[i][0]){
+            //    this.props.history.push(`/admin/vendors/${array[i][0]}`)
             }
         }
     }

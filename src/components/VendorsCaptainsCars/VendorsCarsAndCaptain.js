@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import CaptainTable from './CaptainTable'
+import CarTable from './CarTable'
 
 class VendorDetails extends Component{
     constructor(){
@@ -11,6 +12,7 @@ class VendorDetails extends Component{
             vendor : null,
             AllCaptains : [],
             AllCaptainsID : [],
+            AllCars : [],
         }   
     }
 
@@ -54,6 +56,35 @@ class VendorDetails extends Component{
             });
             console.log("User",snap.val()["email"])
         });
+
+        var Cars = []
+        var CarsList = []
+        firebase.database()
+        .ref("Driver2/Car")
+        .child(this.props.match.params.id)
+        .once('value', snap => {
+            snap.forEach(child => {
+                Cars.push(child.val()["regNo"],
+                child.val()["color"],
+                child.val()["model"],
+                child.val()["modelCar"],
+                child.val()["belongTo"],
+                child.val()["cc"],
+                child.val()["make"],
+                child.val()["kind"],
+                child.val()["runningPage"],
+                child.val()["taken"],
+                child.val()["RegisteredBy"],
+                child.key,
+                this.props.match.params.id)
+                CarsList.push(Cars);
+                Cars = []
+
+            })
+            this.setState({
+                AllCars : CarsList
+            })
+        })
     }
 
     showDetail = () => {
@@ -99,6 +130,12 @@ class VendorDetails extends Component{
                                                                     IDdata={this.state.AllCaptainsID}>
 
                     </CaptainTable> : null
+                }
+                <h3>Cars of this Vendor</h3>
+                {
+                    this.state.AllCars.length > 0 ? <CarTable data={this.state.AllCars}>
+
+                    </CarTable> : null
                 }
                 
             </div>
