@@ -5,6 +5,7 @@ import config from "./../config";
 import './Signup.css'
 import TopNavigation from '../TopNavigation/TopNavigation'
 import rozcarlogo from '../Images/rozcarlogo.png'
+import image2 from '../Images/image2.jpg'
 
 class Signup extends Component {
   state = {
@@ -105,45 +106,64 @@ class Signup extends Component {
             <h4> Login Successfull! </h4>
           </div>
         )}
+            <div className="col-12">
+                <div className = "container" >
+                    <h1 style={{ "textAlign": "center" }}>SignUp!</h1>
+                    <div className="row">
+                        <div className="col-3">
+                            <img src={image2} width="250"></img>
+                        </div>
+                        <div className="col-9">
+                        <div className="row">   
+                            <div className="col-md-6 col-lg-6 mt-3">
+                                <input type="text" className="form-control" placeholder = "username"></input>
+                            </div>
+                        </div>
 
-        <h1 style={{ "textAlign": "center" }}>SignUp!</h1>
-        <div style={{ "width": "30%", "margin": "25px auto" }}>
-          <form onSubmit={this.handleSubmit}>
-
-            
-
-            
-
-            
-            <div className="row">   
-                    <div className="col-md-8 col-lg-12 mt-3">
-                        <input type="text" className="form-control" placeholder = "username"></input>
+                    <div className="row">   
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="password" className="form-control" placeholder = "password"></input>
+                        </div>
                     </div>
-            </div>
 
-            <div className="row">   
-                    <div className="col-md-8 col-lg-12 mt-3">
-                        <input type="text" className="form-control" placeholder = "password"></input>
+                    <div className="row">   
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="password" className="form-control" placeholder = "confirm Password"></input>
+                        </div>
                     </div>
-            </div>
 
-            <div className="row">   
-                    <div className="col-md-8 col-lg-12 mt-3">
-                        <input type="text" className="form-control" placeholder = "Confirm Password"></input>
+                    <div className="row">   
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="email" className="form-control" placeholder = "email"></input>
+                        </div>
                     </div>
-            </div>
 
-            <div className="row">   
-                    <div className="col-md-8 col-lg-12 mt-3">
-                        <input type="text" className="form-control" placeholder = "Phone Number"></input>
+                    <div className="row">   
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="number" className="form-control" placeholder = "phone number"></input>
+                        </div>
                     </div>
+                    <div className="col-md-6 col-lg-6 mt-3">
+                        <button className="btn btn-primary float-right ">Signup</button>
+                    </div>
+
+                </div>
+                </div>
+                </div>
             </div>
 
-            <div className="form-group">
-              <button id = "margin-btn" className="btn btn-lg btn-primary btn-block">SignUp</button>
-            </div>
 
-          </form>
+        <div >
+            <div className="col-12">
+            <div className="container">
+                
+                </div>
+            </div>
+        <div className = "row no-gutter" style={{"margin":"0","padding":"5px 0"}}>
+              
+              
+        </div>
+          
 
         </div>
       </div>

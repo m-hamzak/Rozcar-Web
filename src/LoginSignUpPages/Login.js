@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import firebase from "firebase/app";
 import config from "./../config";
 import TopNavigation from '../TopNavigation/TopNavigation'
+import image2 from '../Images/image2.jpg'
 
 
 class LogIn extends Component {
@@ -105,7 +106,9 @@ class LogIn extends Component {
         <h1 style={{ "textAlign": "center" }}>Login!</h1>
         <div style={{ "width": "30%", "margin": "25px auto" }}>
           <form onSubmit={this.handleSubmit}>
-
+            <div>
+              <img src = {image2} id = "logoRozcar"  className="w3-image w3-right w3-hide-small" width="200" height="100"></img>
+            </div>
             <div className="form-group">
               <input
                 type="text"
