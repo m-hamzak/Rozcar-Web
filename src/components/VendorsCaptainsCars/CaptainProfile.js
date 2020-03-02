@@ -85,7 +85,8 @@ class CaptanProfiles extends Component{
                             <h6>Current Car: </h6>        
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" ></input>
+                            <input type="text" className="form-control" 
+                            defaultValue={this.state.captain !== null ? this.state.captain["currentcar"]: null}></input>
                         </div>
                     </div>
 
@@ -106,8 +107,15 @@ class CaptanProfiles extends Component{
                     </div>
                     
                     <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <img alt="Profile Picture" src={this.state.captain !== null ? this.state.captain["profilePicture"] : null} width="260px"></img>
+                        </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <img src="https://image.shutterstock.com/z/stock-photo-colorful-flower-on-dark-tropical-foliage-nature-background-721703848.jpg"></img>
+                            <div class="file-field center">
+                                <div class="btn btn-primary btn-sm float-left">
+                                    <input type="file"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
