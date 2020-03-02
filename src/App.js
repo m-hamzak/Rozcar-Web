@@ -56,10 +56,7 @@ class App extends Component {
           
         </Switch>
        </React.Fragment>    
-      <div className="App">
-      
-      
-    </div> 
+       
     </div>
     );
   }
