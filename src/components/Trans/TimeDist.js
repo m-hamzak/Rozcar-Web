@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import moment from "moment";
+import HashMap from "hashmap"
 import SingleScheduleModel from './SingleScheduleModel'
+import firebase from "firebase/app";
 
 class TimeDist extends Component{
     
@@ -20,6 +22,10 @@ class TimeDist extends Component{
             NewSchedule : [],
             NewScheduleTime : "",
             NewRoute : [],
+            UpperDistance : "",
+            LowerDistance : "",
+            Package : "",
+            AllocatedPackage : "",
         }
     }
 
@@ -109,11 +115,8 @@ class TimeDist extends Component{
         var pickroute = [];
         var pickRouteBool = [];
         var prestatus
-        if(this.state.PickRadioBtn === true){
-            prestatus = "Pick"
-        }else{
-            prestatus = "Drop"
-        }
+        prestatus = "Pick"
+        
         for(var j = 0; j < this.props.UserProfile.length; j ++){
             var mapObj = {
                 UID : this.props.UserProfile[j].UserID,
@@ -152,17 +155,12 @@ class TimeDist extends Component{
             statusstr = pickRouteBool[index].status;
             
           //  console.log("Old Item",pickRouteBool[index],index)
-            if(this.state.PickRadioBtn === true){    
-                pickRouteBool[index] = {
-                    UID : str.UserID,
-                    status : "Drop"
-                };
-            }else{
-                pickRouteBool[index] = {
-                    UID : str.UserID,
-                    status : "Pick"
-                };
-            }
+            
+            pickRouteBool[index] = {
+                UID : str.UserID,
+                status : "Drop"
+            };
+            
         //    console.log("New Item",pickRouteBool[index],index)
             pickroute.push({
                 ID : str.UserID,
@@ -368,6 +366,18 @@ class TimeDist extends Component{
         //sm' safety margin dash
         // waiting time per pick up
         // a duration of current pick up to next pick up
+        var flag = true;
+        var FinalPackage = "";
+        var distance = document.getElementById(DistanceID).value
+        if(DistanceID === "ptotalDistance"){
+            if(this.state.LowerDistance !== ""){
+                FinalPackage = Number(distance) + Number(document.getElementById("dtotalDistance").value) + ""
+            }
+        }else{
+            if(this.state.UpperDistance !== ""){
+                FinalPackage = Number(distance) + Number(document.getElementById("ptotalDistance").value) + ""
+            }
+        }
         var newschedule = [];
         console.log("Schdule",Schedule);
         //for distance
@@ -723,13 +733,17 @@ class TimeDist extends Component{
             this.setState({
                 NewPickSchedule : newschedule,
                 NewSchedule : newschedule,
-                NewScheduleTime : "Pick"
+                NewScheduleTime : "Pick",
+                Package : FinalPackage,
+                UpperDistance : distance
             })
         }else{
             this.setState({
                 NewDropSchedule : newschedule,
                 NewSchedule : newschedule,
-                NewScheduleTime : "Drop"
+                NewScheduleTime : "Drop",
+                Package : FinalPackage,
+                LowerDistance : distance
             })
         }
         this.toggleSchedule()
@@ -787,16 +801,146 @@ class TimeDist extends Component{
         this.setState({ showInfoTable: !this.state.showInfoTable });
     }
 
-    MakeFinalGroup = () => {
+    MakeFinalTimes(){
+        var PickTemp = []
+        var DropTemp = []
+        for(var i = 0; i < this.state.PickRoute.length; i ++){
+            if(this.state.PickRoute[i].status === "Pick"){
+                PickTemp.push(this.state.PickRoute[i])
+            }
+            if(this.state.DropRoute[i].status === "Pick"){
+                DropTemp.push(this.state.DropRoute[i])
+            }
+        }
 
+        var PickDB = firebase.database().ref("User2/NewPickDays")
+        var DropDB = firebase.database().ref("User2/NewDropDays")
+        
+        for(let j = 0; j < PickTemp.length; j ++){
+            PickDB.child(PickTemp[j].ID).child("Monday").set(this.state.NewPickSchedule[0][j+1])
+            PickDB.child(PickTemp[j].ID).child("Tuesday").set(this.state.NewPickSchedule[1][j+1])
+            PickDB.child(PickTemp[j].ID).child("Wednesday").set(this.state.NewPickSchedule[2][j+1])
+            PickDB.child(PickTemp[j].ID).child("thursday").set(this.state.NewPickSchedule[3][j+1])
+            PickDB.child(PickTemp[j].ID).child("Friday").set(this.state.NewPickSchedule[4][j+1])
+            PickDB.child(PickTemp[j].ID).child("Saturday").set(this.state.NewPickSchedule[5][j+1])
+            PickDB.child(PickTemp[j].ID).child("Sunday").set(this.state.NewPickSchedule[6][j+1])
+
+            DropDB.child(DropTemp[j].ID).child("Monday").set(this.state.NewDropSchedule[0][j+1])
+            DropDB.child(DropTemp[j].ID).child("Tuesday").set(this.state.NewDropSchedule[1][j+1])
+            DropDB.child(DropTemp[j].ID).child("Wednesday").set(this.state.NewDropSchedule[2][j+1])
+            DropDB.child(DropTemp[j].ID).child("thursday").set(this.state.NewDropSchedule[3][j+1])
+            DropDB.child(DropTemp[j].ID).child("Friday").set(this.state.NewDropSchedule[4][j+1])
+            DropDB.child(DropTemp[j].ID).child("Saturday").set(this.state.NewDropSchedule[5][j+1])
+            DropDB.child(DropTemp[j].ID).child("Sunday").set(this.state.NewDropSchedule[6][j+1])
+        }
+        alert("All Done")
+    }
+
+    MakeFinalRoute = () => {
+        //availability
+        if(this.state.PickRoute.length > 0 && this.state.DropRoute.length > 0){
+            if(this.state.AllocatedPackage !== ""){
+            var db = firebase
+            .database()
+            .ref("User2/Groups")
+            .child(this.props.GroupID)
+            var availability = db.child("Availability")
+            var Members = db.child("Members")
+            var LeaderShip = db.child("Leadership")
+            var PickedUp = db.child("PickedUp")
+            var PickRoute = db.child("PickRoute")
+            var DropRoute = db.child("DropRoute")
+            db.child("Leader").set(this.state.PickRoute[0].ID)
+            db.child("PickLeader").set(this.state.PickRoute[0].ID)
+            db.child("DropLeader").set(this.state.DropRoute[0].ID)
+            console.log("MakeFinalRoute",this.state.MembersUser)
+            for(let i = 0; i < this.state.MembersUser.length; i ++){
+                Members.child(this.state.MembersUser[i].MemberNo).set(this.state.MembersUser[i].UID)
+                availability.child(this.state.MembersUser[i].MemberNo).set(true)
+                LeaderShip.child(this.state.MembersUser[i].MemberNo).set(false)
+                PickedUp.child(this.state.MembersUser[i].MemberNo).set(false)
+            }
+            LeaderShip.child("M1").set(true)
+            PickRoute.set(this.state.PickRoute)
+            DropRoute.set(this.state.DropRoute)
+            //UserDaily work for dispatching
+            var db2 = firebase.database().ref("User2/UserDaily").child(this.state.PickRoute[0].ID)
+            db2.child("ID").set(this.state.PickRoute[0].ID)
+            db2.child("isBooked").set(false);
+            db2.child("round").set(0)
+            //UserProfiles may changing
+            var db3 = firebase.database().ref("User2/UserInfo");
+            for(let k = 0; k < this.props.UserProfile.length; k ++){
+                if(this.props.UserProfile[k].UserID === this.state.PickRoute[0].ID){
+                    db3.child(this.props.UserProfile[k].UserID).update({PickLeader : true})
+                    db3.child(this.props.UserProfile[k].UserID).update({LeaderBool : true})
+                    db3.child(this.props.UserProfile[k].UserID).update({DropLeader : false})
+                }else if(this.props.UserProfile[k].UserID === this.state.DropRoute[0].ID){
+                    db3.child(this.props.UserProfile[k].UserID).update({DropLeader : true})
+                    db3.child(this.props.UserProfile[k].UserID).update({PickLeader : false})
+                    db3.child(this.props.UserProfile[k].UserID).update({LeaderBool : false})
+                }else{
+                    db3.child(this.props.UserProfile[k].UserID).update({DropLeader : false})
+                    db3.child(this.props.UserProfile[k].UserID).update({PickLeader : false})
+                    db3.child(this.props.UserProfile[k].UserID).update({LeaderBool : false})
+                }
+                db3.child(this.props.UserProfile[k].UserID).update({Package : this.state.AllocatedPackage})
+                db3.child(this.props.UserProfile[k].UserID).update({Transcribed : true})
+            }
+                // For M1 M2 etc
+                for(let l = 0; l < this.state.MembersUser.length; l ++){
+                    db3.child(this.state.MembersUser[l].UID)
+                    .update({MemberNo :this.state.MembersUser[l].MemberNo})
+                }
+                this.MakeFinalTimes()
+        }else{
+            alert("Please Configure Time First")
+        }
+           
+
+        }else{
+            alert("Please Fill both Routes")
+        }
+        
+
+        // firebase
+        // .database()
+        // .ref("User2/Groups")
+        // .child(this.props.GroupID)
+        // .child("DemoAvailability")
+        // .set(objarray)
+    }
+
+    MakeFinalGroup = () => {
+        //Group ki node k andr chalay jai
+        this.MakeFinalRoute()
+    }
+
+    getAllocatedPackage = (Meters) => {
+        if(Meters != ""){
+            var allocatedPackage = ""
+            Meters = Number(Meters);
+            var km = Math.round(Meters / 100) / 10;
+            for(let i = 0; i < this.props.Packages.length; i ++){
+                if(km <= this.props.Packages[i].Kmlimitperday){
+                    allocatedPackage = this.props.Packages[i].RoutePackageCode
+                    this.state.AllocatedPackage = allocatedPackage;
+                    console.log("AllocatedPackage",this.state.AllocatedPackage)
+                    return this.props.Packages[i].RoutePackageCode
+                }
+            }
+        }else{
+            return ""
+        }        
     }
 
     render(){
         return(
             <div className="container">
-
+                <label>Package Allocated to this Group is : {this.getAllocatedPackage(this.state.Package)}</label>
                 {/* PICK UP TABLE AND TIMELINE STARTS */}
                 <div className="row">
+                    
 
                     {/* TABLE STARTS HERE */}
                     <div className="col-md-6 col-lg-6 mt-5">

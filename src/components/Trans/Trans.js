@@ -13,6 +13,7 @@ class Trans extends Component{
         DropOffLocation : [],
         PickUpSchedule : [],
         DropOffSchedule : [],
+        AllPackages : [],
     }
 
     componentWillMount(){
@@ -34,6 +35,7 @@ class Trans extends Component{
             this.getAllDropOffLocation(UserInfo);
             this.getAllPickUpSchedule(UserInfo);
             this.getAllDropOffSchedule(UserInfo);
+            this.getAllPackages()
         })
     }
 
@@ -47,6 +49,8 @@ class Trans extends Component{
         }else if(this.state.PickUpSchedule.length <= 0){
             return false
         }else if(this.state.DropOffSchedule.length <= 0){
+            return false
+        }else if(this.state.AllPackages.length <= 0){
             return false
         }
         return true
@@ -67,6 +71,20 @@ class Trans extends Component{
                 }
             })
         }
+    }
+    getAllPackages(){
+        var Packages = []
+        firebase.database()
+        .ref("Packages")
+        .once('value', snap =>{
+            snap.forEach(function(doc) {
+                Packages.push(doc.val())
+            })
+            console.log(Packages);
+            this.setState({
+                AllPackages : Packages
+            })
+        })
     }
     getAllDropOffLocation(UserProfile){
         var dropofflocationarray = [];
@@ -185,7 +203,9 @@ class Trans extends Component{
                                                                                                 PickUpSchedule={this.state.PickUpSchedule}
                                                                                                 DropOffSchedul={this.state.DropOffSchedule}
                                                                                                 PickupLocation={this.state.PickUpLocation}
-                                                                                                DropOffLocation={this.state.DropOffLocation}/> : null
+                                                                                                DropOffLocation={this.state.DropOffLocation}
+                                                                                                GroupID={this.props.match.params.id}
+                                                                                                Packages={this.state.AllPackages}/> : null
                                             }
                                             
                                         </div>

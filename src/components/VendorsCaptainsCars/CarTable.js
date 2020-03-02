@@ -13,6 +13,13 @@ class CarTable extends Component {
             this.getUserID(e.toElement.textContent,this.props.data);
             
         })  
+
+        $(document).ready( function () {
+            $('#example').DataTable( {
+                buttons: [ 'csv', 'excel', 'pdf', 'print' ]
+            } );
+        } );
+        
         this.$el.DataTable({
             data: this.props.data,
             columns: [
