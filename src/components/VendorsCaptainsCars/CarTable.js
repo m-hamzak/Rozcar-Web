@@ -3,44 +3,39 @@ import { withRouter } from 'react-router-dom'
 const $= require('jquery')
 $.DataTable = require ('datatables.net')
 // Referral link : https://www.youtube.com/watch?v=ZCKj0SJRTB8
-class Tbl extends Component {
+class CarTable extends Component {
     componentDidMount(){
         console.log(this.el);
         this.$el = $(this.el)
         this.$el.click( (e) => {
-         //   e.preventDefault();
+            e.preventDefault();
             console.log("Clicked Item",e.toElement.textContent);
-            this.getUserID(e.toElement.textContent,this.props.data,this.props.IDdata);
+            this.getUserID(e.toElement.textContent,this.props.data);
             
-        })
-        console.log("Data",this.props.data)
+        })  
         this.$el.DataTable({
-                data: this.props.data,
-             columns: [
-                {title : "Name"},
-                {title : "Email"},
-                {title : 'Phone Number'},
-                {title : 'GroupID'},
-                {title : "Package"},
-                {title : "Residentail Address"},
-                {title : 'Office Address'}
+            data: this.props.data,
+            columns: [
+                {title : 'Registration No.'},
+                {title : "Color"},
+                {title : "Model"},
+                {title : 'Car Model'}
                 ]
         })
     }
-
-    getUserID(email,array,ID){
-        console.log("email",email)
+    getUserID(regNo,array,){
+        console.log("regNo",regNo)
         console.log("array",array[0][1])
         for(var i=0; i < array.length; i++){
-            if(email === array[i][1]){
-                this.props.history.push(`/admin/userlist/profile/${ID[i][0]}`)
+            if(regNo === array[i][0]){
+            //    this.props.history.push(`/admin/vendors/${array[i][0]}`)
             }
         }
     }
     render(){
         return(
             
-            <div>All Users List
+            <div>
                 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"/>
                 <script type="text/javascript" charSet="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
@@ -52,4 +47,4 @@ class Tbl extends Component {
     }
 }
 
-export default withRouter(Tbl); 
+export default withRouter(CarTable); 

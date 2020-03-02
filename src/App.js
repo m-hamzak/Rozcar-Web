@@ -15,14 +15,24 @@ import User from "./components/user";
 import ClientPage from "./components/ClientPage";
 import UserList from './components/UsersList/UserList';
 import CustomerProfile from './components/UserCompleteData/usercompletedata'
+<<<<<<< HEAD
 import LandingPage from './LandingPage/LandingPage'
 import TopNavigation from './TopNavigation/TopNavigation'
+=======
+import Vendors from './components/VendorsCaptainsCars/Vendors'
+import Captains from './components/VendorsCaptainsCars/Captains'
+import Cars from './components/VendorsCaptainsCars/Car'
+import VendorsCaptainCar from './components/VendorsCaptainsCars/VendorsCarsAndCaptain'
+import CaptainProfile from './components/VendorsCaptainsCars/CaptainProfile'
+
+>>>>>>> 4e6c328d671fcab60507678381a92a1231f5e25e
 
 import Trans from './components/Trans/Trans'
 
 class App extends Component {
   render() {
     return (
+<<<<<<< HEAD
       // <React.Fragment>
       //   <Switch>
       //     <Route path="/admin/userlist/profile/:id" component ={CustomerProfile}></Route>
@@ -32,6 +42,23 @@ class App extends Component {
       //     <AppRoute NavBar={NavBar} name="transcription" path="/admin/Transcription" component={Transcription} />
       //     <AppRoute NavBar={NavBar} name="vendors" path="/admin/vendors" component={VendorEquity} />
       //     <AppRoute NavBar={NavBar} name="login" path="/admin/login" component={Login} />
+=======
+      <React.Fragment>
+        <Switch>
+          <Route path="/admin/userlist/profile/:id" component ={CustomerProfile}></Route>
+        <AppRoute NavBar={NavBar} name="UserList" path="/admin/userlist" component={UserList} />
+          <AppRoute NavBar={NavBar} name="register" path="/admin/register" component={MainForm} />
+          <AppRoute NavBar={NavBar} name="map" path="/admin/map" component={MapInfo} />
+          <AppRoute NavBar={NavBar} name="transcription" path="/admin/Transcription" component={Transcription} />
+          <AppRoute NavBar={NavBar} name="vendorscarscaptains" path="/admin/vendors/:id" component={VendorsCaptainCar} />
+          <AppRoute NavBar={NavBar} name="vendors" path="/admin/vendors" component={Vendors} />
+          <AppRoute NavBar={NavBar} name="Captains" path="/admin/captains/:id" component={CaptainProfile} />
+          <AppRoute NavBar={NavBar} name="Captains" path="/admin/captains" component={Captains} />
+          <AppRoute NavBar={NavBar} name="Cars" path="/admin/cars" component={Cars} />
+          
+
+          <AppRoute NavBar={NavBar} name="login" path="/admin/login" component={Login} />
+>>>>>>> 4e6c328d671fcab60507678381a92a1231f5e25e
           
       //     <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Transcription} />
       //     <AppRoute NavBar={NavBar} name = "transGroup" path="/admin/transGroup/:id" component={Trans}/> 

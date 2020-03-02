@@ -9,6 +9,7 @@ class UserListComponent extends Component{
         super();
         this.state = {
             CustomerList : [],
+            IDCustomerList : [],
             TableFlag : false
         }
     }
@@ -16,10 +17,11 @@ class UserListComponent extends Component{
     componentDidMount(){
         var array = []
         var CustomerArray = []
+        var arrayID = []
+        var ID = []
         firebase
         .database()
         .ref("User2/UserInfo")
-        .orderByKey()
         .once('value', snap => {
             snap.forEach(child => {
                 array.push(child.val()["Name"],
@@ -28,15 +30,19 @@ class UserListComponent extends Component{
                 child.val()["GroupID"],
                 child.val()["Package"],
                 child.val()["ResidentialAddress"],
-                child.val()["OfficeAddress"],
-                child.val()["UserID"]);
+                child.val()["OfficeAddress"]);
+                arrayID.push(child.val()["UserID"])
                 CustomerArray.push(array);
+                ID.push(arrayID)
                 array = []
+                arrayID = []
             })
             console.log(CustomerArray);
             this.setState({
+                IDCustomerList : ID,
                 CustomerList : CustomerArray,
-                TableFlag : true
+                TableFlag : true,
+                
             });
         });
     }
@@ -44,9 +50,10 @@ class UserListComponent extends Component{
     render(){
         return(
             <div>
-                <h1>User List Pages</h1>
+                <h2>User List</h2>
                 {
-                    this.state.TableFlag ? <Tbl data={this.state.CustomerList}>
+                    this.state.TableFlag ? <Tbl data={this.state.CustomerList}
+                                                IDdata={this.state.IDCustomerList}>
 
                     </Tbl> : null
                 }
