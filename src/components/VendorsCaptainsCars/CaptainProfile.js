@@ -30,80 +30,86 @@ class CaptanProfiles extends Component{
                 <h3>Captain Details</h3>
 
                 <div className="col-12">
-                <div className="row">
-                    <div className="col-md-3 col-lg-3 mt-3">
-                        <h6>ID: </h6>        
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h6>ID: </h6>        
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" 
+                            defaultValue={this.state.captain !== null ? this.state.captain["ID"]: null} readOnly></input>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 mt-3">
-                        <input type="text" className="form-control" 
-                        defaultValue={this.state.captain !== null ? this.state.captain["ID"]: null} readOnly></input>
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-3 col-lg-3 mt-3">
-                        <h6>Email: </h6>        
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h6>Email: </h6>        
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" 
+                            defaultValue={this.state.captain !== null ? this.state.captain["email"]: null} readOnly></input>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 mt-3">
-                        <input type="text" className="form-control" 
-                        defaultValue={this.state.captain !== null ? this.state.captain["email"]: null} readOnly></input>
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-3 col-lg-3 mt-3">
-                        <h6>Full Name: </h6>        
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h6>Full Name: </h6>        
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" 
+                            defaultValue={this.state.captain !== null ? this.state.captain["name"]: null}></input>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 mt-3">
-                        <input type="text" className="form-control" 
-                        defaultValue={this.state.captain !== null ? this.state.captain["name"]: null}></input>
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-3 col-lg-3 mt-3">
-                        <h6>Phone Number: </h6>        
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h6>Phone Number: </h6>        
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" 
+                            defaultValue={this.state.captain !== null ? this.state.captain["phone"]: null}></input>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 mt-3">
-                        <input type="text" className="form-control" 
-                        defaultValue={this.state.captain !== null ? this.state.captain["phone"]: null}></input>
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-3 col-lg-3 mt-3">
-                        <h6>Alternate Phone Number: </h6>        
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h6>Alternate Phone Number: </h6>        
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" 
+                            defaultValue={this.state.captain !== null ? this.state.captain["alternatePhone"]: null}></input>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 mt-3">
-                        <input type="text" className="form-control" 
-                        defaultValue={this.state.captain !== null ? this.state.captain["alternatePhone"]: null}></input>
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-3 col-lg-3 mt-3">
-                        <h6>Current Car: </h6>        
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h6>Current Car: </h6>        
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" ></input>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 mt-3">
-                        <input type="text" className="form-control" ></input>
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-3 col-lg-3 mt-3">
-                        <h6>Registered By: </h6>        
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h6>Registered By: </h6>        
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" 
+                            defaultValue={this.state.captain !== null ? this.state.captain["RegisteredBy"]: null} readOnly></input>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 mt-3">
-                        <input type="text" className="form-control" 
-                        defaultValue={this.state.captain !== null ? this.state.captain["RegisteredBy"]: null} readOnly></input>
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-9 col-lg-9 mt-3">
-                        <button type="button" className="btn btn-primary float-right">Update</button>
+                    <div className="row">
+                        <div className="col-md-9 col-lg-9 mt-3">
+                            <button type="button" className="btn btn-primary float-right">Update</button>
+                        </div>
                     </div>
-                </div>
+                    
+                    <div className="row">
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <img src="https://image.shutterstock.com/z/stock-photo-colorful-flower-on-dark-tropical-foliage-nature-background-721703848.jpg"></img>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
