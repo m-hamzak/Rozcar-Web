@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // eslint-disable-next-line
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
+import { Modal } from 'react-bootstrap';
 
 class UserCompleteData extends Component{
     constructor(){
@@ -239,26 +240,16 @@ class UserCompleteData extends Component{
                         <div className="col-md-4 col-lg-4 mt-3">
                             <select type="select" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Package"]: null} >
-                                <option value="true">True</option>
-                                <option value="false">False</option>
+                                <option value="R1">R1</option>
+                                <option value="R2">R2</option>
+                                <option value="R3">R3</option>
+                                <option value="R4">R4</option>
+                                <option value="R5">R5</option>
+                                <option value="R6">R6</option>
+                                <option value="R7">R7</option>
                             </select>
                         </div>
 
-                        <div className="col-md-2 col-lg-2 mt-3">
-                            <h6>Pick Area: </h6>   
-                        </div>
-                        <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["PickArea"]: null} >
-                                <option value="true">True</option>
-                                <option value="false">False</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-
-                    <div className="row">
                         <div className="col-md-2 col-lg-2 mt-3">
                             <h6>Pick Leader: </h6>   
                         </div>
@@ -270,16 +261,6 @@ class UserCompleteData extends Component{
                             </select>
                         </div>
 
-                        <div className="col-md-2 col-lg-2 mt-3">
-                            <h6>Reject: </h6>   
-                        </div>
-                        <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["Reject"]: null} >
-                                <option value="true">True</option>
-                                <option value="false">False</option>
-                            </select>
-                        </div>
                     </div>
 
 
@@ -288,11 +269,9 @@ class UserCompleteData extends Component{
                             <h6>Reject Message: </h6>   
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["PickLeader"]: null} >
-                                <option value="true">True</option>
-                                <option value="false">False</option>
-                            </select>
+                            <textarea type="text" className="form-control" 
+                            defaultValue={this.state.User !== null ? this.state.User["RejectMessage"]: null} >
+                            </textarea>
                         </div>
 
                         <div className="col-md-2 col-lg-2 mt-3">
@@ -300,7 +279,7 @@ class UserCompleteData extends Component{
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
                             <select type="select" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["Reject"]: null} >
+                            defaultValue={this.state.User !== null ? this.state.User["Transcribed"]: null} >
                                 <option value="true">True</option>
                                 <option value="false">False</option>
                             </select>
@@ -312,7 +291,8 @@ class UserCompleteData extends Component{
                     <div className="row">
                         <div className="col-md-12 col-lg-12 mt-3">
                             <button type="button" className="btn btn-primary float-right ml-2">Update</button>
-                            <button type="button" className="btn btn-danger float-right"><i className="fa fa-ban mr-2"></i>Block</button>
+                            <button type="button" className="btn btn-danger float-right ml-2"><i className="fa fa-ban mr-2"></i>Block</button>
+                            <button type="button" className="btn btn-warning float-right"><i className="fa fa-close mr-2"></i>Reject</button>
                         </div>
                     </div>
                     
