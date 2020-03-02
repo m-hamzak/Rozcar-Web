@@ -160,7 +160,7 @@ class VendorDetails extends Component{
                             <h6>Registration Date: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" defaultValue={this.state.vendor["regDate"]} ></input>
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["regDate"]} readOnly></input>
                         </div>
                     </div>
 
@@ -169,7 +169,7 @@ class VendorDetails extends Component{
                             <h6>Registered By: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" defaultValue={this.state.vendor["Registered By"]} ></input>
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["Registered By"]} readOnly></input>
                         </div>
                     </div>
 
