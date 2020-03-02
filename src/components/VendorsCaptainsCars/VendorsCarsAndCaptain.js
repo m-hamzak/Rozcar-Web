@@ -91,26 +91,97 @@ class VendorDetails extends Component{
         var layout = []
         layout.push(
             <div key={"0"}>
-                
-                <label for="ID">{"ID : " + this.state.vendor["ID"]}</label>
-                <br/>
-                <label for="email">{"Email : " + this.state.vendor["email"]}</label>
-                <br/>
-                <label for="Name">{"Name : " + this.state.vendor["name"]}</label>
-                <br/>
-                <label for="num">{"Phone Number : " + this.state.vendor["phone"]}</label>
-                <br/>
-                <label for="altnum">{"Alternate phone Number : " + this.state.vendor["alternatePhone"]}</label>
-                <br/>
-                <label for="iban">{"IBAN Number : " + this.state.vendor["iban"]}</label>
-                <br/>
-                <label for="cnin">{"CNIC Number : " + this.state.vendor["cnicNo"]}</label>
-                <br/>
-                <label for="regDate">{"Registration Date : " + this.state.vendor["regDate"]}</label>
-                <br/>
-                <label for="regBy">{"Registered By : " + this.state.vendor["Registered By"]}</label>
-            
-                
+                <div className="col-12">
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>ID: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["ID"]} readOnly></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>Email: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["email"]} readOnly></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>Full Name: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["name"]} ></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>Phone Number: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["phone"]} ></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>Alternate Phone Number: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["alternatePhone"]} ></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>IBAN Number: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["iban"]} ></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>CNIC Number: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["cnicNo"]} ></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>Registration Date: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["regDate"]} ></input>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 mt-3">
+                            <h5>Registered By: </h5>
+                        </div>
+                        <div className="col-md-6 col-lg-6 mt-3">
+                            <input type="text" className="form-control" defaultValue={this.state.vendor["Registered By"]} ></input>
+                        </div>
+                    </div>
+
+
+                    <div className="row">
+                        <div className="col-md-9 col-lg-9 mt-3">
+                            <button type="button" className="btn btn-primary float-right">Update</button>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         )
         return layout
@@ -119,7 +190,7 @@ class VendorDetails extends Component{
 
     render(){
         return(
-            <div>
+            <div className="container">
                 <h3>Vendor Detail with Cars and Captains</h3>
                 {
                     this.state.vendor !== null ? this.showDetail() : null

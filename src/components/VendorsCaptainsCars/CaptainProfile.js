@@ -26,11 +26,13 @@ class CaptanProfiles extends Component{
 
     render(){
         return(
-            <div>
+            <div className="container">
                 <h3>Captain Details</h3>
                 {
                     this.state.captain !== null ?  "Email : " + this.state.captain["email"]: null
                 }
+
+                
                 
             </div>
         )

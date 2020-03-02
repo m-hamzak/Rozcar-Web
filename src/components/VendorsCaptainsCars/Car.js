@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 // eslint-disable-next-line
-import { Redirect } from "react-router-dom";
-import firebase from "firebase/app";
 import CarTable from "./CarTable";
 
 class CarList extends Component{
