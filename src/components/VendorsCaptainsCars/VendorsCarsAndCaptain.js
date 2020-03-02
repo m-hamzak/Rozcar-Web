@@ -94,7 +94,7 @@ class VendorDetails extends Component{
                 <div className="col-12">
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>ID: </h5>
+                            <h6>ID: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["ID"]} readOnly></input>
@@ -103,7 +103,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>Email: </h5>
+                            <h6>Email: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["email"]} readOnly></input>
@@ -112,7 +112,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>Full Name: </h5>
+                            <h6>Full Name: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["name"]} ></input>
@@ -121,7 +121,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>Phone Number: </h5>
+                            <h6>Phone Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["phone"]} ></input>
@@ -130,7 +130,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>Alternate Phone Number: </h5>
+                            <h6>Alternate Phone Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["alternatePhone"]} ></input>
@@ -139,7 +139,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>IBAN Number: </h5>
+                            <h6>IBAN Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["iban"]} ></input>
@@ -148,7 +148,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>CNIC Number: </h5>
+                            <h6>CNIC Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["cnicNo"]} ></input>
@@ -157,7 +157,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>Registration Date: </h5>
+                            <h6>Registration Date: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["regDate"]} ></input>
@@ -166,7 +166,7 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mt-3">
-                            <h5>Registered By: </h5>
+                            <h6>Registered By: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
                             <input type="text" className="form-control" defaultValue={this.state.vendor["Registered By"]} ></input>
