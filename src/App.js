@@ -23,7 +23,7 @@ import Cars from './components/VendorsCaptainsCars/Car'
 import VendorsCaptainCar from './components/VendorsCaptainsCars/VendorsCarsAndCaptain'
 import CaptainProfile from './components/VendorsCaptainsCars/CaptainProfile'
 import LogIn from './LoginSignUpPages/LogIn'
-
+import Signup from './LoginSignUpPages/Signup'
 
 import Trans from './components/Trans/Trans'
 
@@ -53,6 +53,7 @@ class App extends Component {
           <AppRoute NavBar={NavBar} name="user" path="/admin/user/:id" component={User} />
           <AppRoute NavBar={NavBar} name="admin" path="/admin" component={Landing} />
           <Route name = "LogIn" path = "/LogIn" component = {LogIn}/>
+          <Route name = "signup" path = "/Signup" component = {Signup}/>
            <Route name = "LandingPage" path = "/" component = {LandingPage}/>
           {/* <AppRoute NavBar={NavBar} name="client" path="/" component={ClientPage} /> */}
           
