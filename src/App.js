@@ -29,11 +29,12 @@ import Trans from './components/Trans/Trans'
 class App extends Component {
   render() {
     return (
-      <div>
+    <div>
+
       <React.Fragment>
         <Switch>
           <Route path="/admin/userlist/profile/:id" component ={CustomerProfile}></Route>
-        <AppRoute NavBar={NavBar} name="UserList" path="/admin/userlist" component={UserList} />
+          <AppRoute NavBar={NavBar} name="UserList" path="/admin/userlist" component={UserList} />
           <AppRoute NavBar={NavBar} name="register" path="/admin/register" component={MainForm} />
           <AppRoute NavBar={NavBar} name="map" path="/admin/map" component={MapInfo} />
           <AppRoute NavBar={NavBar} name="transcription" path="/admin/Transcription" component={Transcription} />
@@ -42,25 +43,20 @@ class App extends Component {
           <AppRoute NavBar={NavBar} name="Captains" path="/admin/captains/:id" component={CaptainProfile} />
           <AppRoute NavBar={NavBar} name="Captains" path="/admin/captains" component={Captains} />
           <AppRoute NavBar={NavBar} name="Cars" path="/admin/cars" component={Cars} />
-          
-
-          <AppRoute NavBar={NavBar} name="login" path="/admin/login" component={Login} />
-          
+          <AppRoute NavBar={NavBar} name="login" path="/admin/login" component={Login} /> 
            <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Transcription} />
            <AppRoute NavBar={NavBar} name = "transGroup" path="/admin/transGroup/:id" component={Trans}/> 
           
            <AppRoute NavBar={NavBar} name="logout" path="/admin/logout" component={Logout} />
-           <AppRoute NavBar={NavBar} name="group" path="/admin/group/:id" component={GroupDetail} />
-           <AppRoute NavBar={NavBar} name="user" path="/admin/user/:id" component={User} />
-           <AppRoute NavBar={NavBar} name="admin" path="/admin" component={Landing} />
-           {/* <AppRoute NavBar={NavBar} name="client" path="/" component={ClientPage} /> */}
+          <AppRoute NavBar={NavBar} name="group" path="/admin/group/:id" component={GroupDetail} />
+          <AppRoute NavBar={NavBar} name="user" path="/admin/user/:id" component={User} />
+          <AppRoute NavBar={NavBar} name="admin" path="/admin" component={Landing} />
+           <Route name = "LandingPage" path = "/" component = {LandingPage}/>
+          {/* <AppRoute NavBar={NavBar} name="client" path="/" component={ClientPage} /> */}
           
-      //   </Switch>
-      // </React.Fragment>    
-      <div className="App">
-      <TopNavigation/>
-      <LandingPage/>
-    </div>
+        </Switch>
+       </React.Fragment>    
+       
     </div>
     );
   }
