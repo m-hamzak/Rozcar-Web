@@ -6,56 +6,18 @@ import slider2New from '../Images/slider2New.jpg'
 import image1 from '../Images/image1.jpg'
 import image2 from '../Images/image2.jpg'
 import rozcarlogo from '../Images/rozcarlogo.png'
-
-
-
+import TopNavigation from '../TopNavigation/TopNavigation'
 
 class LandingPage extends Component {
-
-    
 
     render() {
         return(
 
         <div>
-
+            <TopNavigation/>
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins"/> 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-
-                    
-          
-                    <div className = "navbar">
-                    <div>
-                            <img src = {rozcarlogo} id = "logoRozcar"  className="w3-image w3-right w3-hide-small" width="70" height="100"></img>
-                        </div>
-                        <div className="collapse navbar-collapse" id="navbarResponsive">
-        <ul className="navbar-nav text-uppercase ml-auto">
-          <li className="nav-item">
-            <a className="nav-link js-scroll-trigger" href="#services">Services</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link js-scroll-trigger" href="#team">Team</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-                        
-                    </div>
-                    
-                </nav>
-
-
 
              <div clasName="mySlides w3-animate-opacity">
                 <img className="w3-image" src= {slider2New} alt="Image 2"></img>
