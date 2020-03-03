@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import moment from "moment";
-import HashMap from "hashmap"
 import SingleScheduleModel from './SingleScheduleModel'
 import firebase from "firebase/app";
 
