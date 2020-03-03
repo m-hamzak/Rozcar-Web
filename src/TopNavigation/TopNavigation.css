@@ -4,7 +4,7 @@
     background-color: #09C7AE;
     overflow: auto;
     padding: 10px;
-    cursor: pointer;
+    display: block !important;
   }
   
   .navbar img {
@@ -12,8 +12,6 @@
       
       cursor: pointer;
   }
-  
-  
   
   /* Navbar links */
   .navbar a {
@@ -23,6 +21,8 @@
     color: white;
     text-decoration: none;
     font-size: 17px;
+    cursor: pointer;
+    color: white !important;
     
     margin-top: 10px !important;
   }

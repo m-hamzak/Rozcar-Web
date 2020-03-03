@@ -1,14 +1,70 @@
 import React, {Component} from 'react';
 import './LandingPage.css'
 import DemoMap from '../Images/DemoMap.png'
-import slider1 from '../Images/slider1.jpg'
+import slider2 from '../Images/slider2.jpg'
+import slider3 from '../Images/slider3.jpg'
 import slider2New from '../Images/slider2New.jpg'
 import image1 from '../Images/image1.jpg'
 import image2 from '../Images/image2.jpg'
 import rozcarlogo from '../Images/rozcarlogo.png'
+import google from '../Images/google.png'
 import TopNavigation from '../TopNavigation/TopNavigation'
+import Carousel from 'react-bootstrap/Carousel'
+import cur1 from '../Images/cur1.jpg'
+import appstore from '../Images/appstore.png'
+import airconditioned from '../Images/air-conditioned.png'
+import announcement from '../Images/announcement.png'
+import automatedmatching from '../Images/automated-matching.png'
+import communication from '../Images/communication.png'
+import easypayment from '../Images/easy-payment.png'
+import economical from '../Images/economical.png'
+import erm from '../Images/ERM.png'
+import inapphazard from '../Images/in-app-hazard.png'
+import nopeak from '../Images/no-peak.png'
+import secure from '../Images/secure.png'
+import timesaving from '../Images/time-saving.png'
+import vacationfee from '../Images/vacation-fee.png'
 
 class LandingPage extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            picArr: [cur1, cur1, cur1,cur1,cur1,cur1,cur1,cur1,cur1],
+        }
+    }
+    //Initially pic Index = 0
+    picIndex = 0;
+
+    //CorouselCreationHere:
+    createCarousel = () => {
+        var table =[];
+        for(let i = 0; i< 3; i++){
+            table.push(
+                <Carousel.Item>
+                    <div>
+                        {
+                            this.createImage()
+                        }
+                    </div>
+                </Carousel.Item>
+            );
+        }
+        return table;
+    }
+
+    createImage = () => {
+        var table = []
+        for(let i = 0; i< 3; i++) {
+            table.push(
+                <div clasName="mySlides w3-animate-opacity">
+                    <img className="w3-image" id = "carouselone" src= {this.state.picArr[this.picIndex]} alt="Cur Image"></img>       
+                </div>
+            );
+            this.picIndex++;
+        }
+        return table;
+    }
 
     render() {
         return(
@@ -37,14 +93,10 @@ class LandingPage extends Component {
                         <h1 className="w3-xxxlarge w3-text-green"><b>Why buy it?</b></h1>
                         <p><span className="w3-xlarge">Take photos like a pro.</span> You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                         ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <button className="w3-button w3-light-grey w3-padding-large w3-section w3-hide-small" onclick="document.getElementById('download').style.display='block'">
-                            <i className="fa fa-download"></i> Download Application
-                        </button>
-                        <p>Available for
-                            <i className="fa fa-android w3-xlarge w3-text-green"></i>
-                            <i className="fa fa-apple w3-xlarge"></i>
-                            <i className="fa fa-windows w3-xlarge w3-text-blue"></i>
-                        </p>
+                            <img  id = "google" src = {google} height = "auto" width = "200px"></img>
+                            <img className = "w3-image" id = "apple" src = {appstore} height = "auto" width = "200px"></img>
+                        
+                        
                     </div>
                     <div className="w3-col l4 m6">
                     <img src = {DemoMap} class="w3-image"></img>
@@ -73,79 +125,71 @@ class LandingPage extends Component {
             </div>
 
             {/* <!-- Clarity Section --> */}
-            <div className="w3-padding-64 w3-light-grey">
-                <div className="w3-row-padding">
-                    <div className="w3-col l4 m6">
-                        <img className="w3-image w3-round-large w3-hide-small w3-grayscale" src={image2} alt="App" width="335" height="471"></img>
-                    </div>
-                    <div className="w3-col l8 m6">
-                        <h1 className="w3-jumbo"><b>Clarity</b></h1>
-                        <h1 className="w3-xxxlarge w3-text-red"><b>Pixels, who?</b></h1>
-                        <p><span classNam="w3-xlarge">A revolution in resolution.</span> Sharp and clear photos with the world's best photo engine, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    </div>
-                </div>
-            </div>
+            <Carousel>
+                {
+                    this.createCarousel()
+                }
+            </Carousel>
 
             {/* <!-- Features Section --> */}
             <div id = "feature-section" className="w3-container w3-padding-64 w3-dark-grey w3-center">
-            <h1 className="w3-jumbo"><b>Features</b></h1>
-            <p>This app is just so lorem ipsum.</p>
+            <h1 className="w3-jumbo"><b>Why ROZCAR?</b></h1>
+            <p>Your Daily commute Partner</p>
 
             <div className="w3-row">
                 <div className="w3-col s3">
-                <i className="fa fa-bolt w3-text-orange w3-jumbo"></i>
-                <p>Fast</p>
+                <img src = {timesaving} id = "timesaving"  className="w" width="100" height="100"></img>
+                <p>Time Saving</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-heart w3-text-red w3-jumbo"></i>
-                <p>Loved</p>
+                <img src = {economical} id = "economical"  className="w" width="100" height="100"></img>
+                <p>Economical</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-camera w3-text-yellow w3-jumbo"></i>
-                <p>Clarity</p>
+                <img src = {secure} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>Safe and Serve</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-battery-full w3-text-green w3-jumbo"></i>
-                <p>Power</p>
+                <img src = {inapphazard} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>App Hazard</p>
                 </div>
             </div>
 
             <div className="w3-row">
                 <div className="w3-col s3">
-                <i className="fa fa-diamond w3-text-white w3-jumbo"></i>
-                <p>Sharp</p>
+                <img src = {airconditioned} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>Air Conditional</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-cloud w3-text-blue w3-jumbo"></i>
-                <p>Cloud</p>
+                <img src = {vacationfee} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>No fee for vaccation</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-globe w3-text-amber w3-jumbo"></i>
-                <p>Global</p>
+                <img src = {nopeak} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>No peak/Surge</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-hdd-o w3-text-cyan w3-jumbo"></i>
-                <p>Storage</p>
+                <img src = {automatedmatching} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>Automated Matching process</p>
                 </div>
             </div>
             
             <div className="w3-row">
                 <div className="w3-col s3">
-                <i className="fa fa-user w3-text-sand w3-jumbo"></i>
-                <p>Safe</p>
+                <img src = {communication} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>Effective Communication</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-shield w3-text-orange w3-jumbo"></i>
-                <p>Stabile</p>
+                <img src = {announcement} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>Regular Announcement</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-wifi w3-text-grey w3-jumbo"></i>
-                <p>Connected</p>
+                <img src = {erm} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>ERM</p>
                 </div>
                 <div className="w3-col s3">
-                <i className="fa fa-image w3-text-pink w3-jumbo"></i>
-                <p>HD</p>
+                <img src = {easypayment} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <p>Easy Payments</p>
                 </div>
             </div>
             </div>
