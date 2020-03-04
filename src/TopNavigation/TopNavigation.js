@@ -5,6 +5,13 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 
 class TopNavigation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        
+        }
+    }
+   
     render() {
         return(
             <div>
@@ -14,31 +21,26 @@ class TopNavigation extends Component {
                     
                     
                     <div className = "navbar">
-                    <div>
-                        <img src = {rozcarlogo} id = "logoRozcar"  className="w3-image w3-right w3-hide-small" width="70" height="100"></img>
-                    </div>
+                        <div>
+                            <img src = {rozcarlogo} id = "logoRozcar"  className="w3-image w3-right w3-hide-small" width="70" height="100"></img>
+                        </div>
                         <a > Home</a>
                         <a > packages</a>
                         <a > Our Story</a>
                         <a >Contact</a>
                         <a > Lets talk!</a>  
-                        <div>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Dropdown Button
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            <label>hi</label>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    </div>   
-                    </div> 
-                    <div>
-                        
+                        <div class="dropdown">
+                        <button className="dropbtn">Dropdown 
+                            <i className="fa fa-caret-down"></i>
+                        </button>
+                            <div className="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                            </div>
+                        </div>  
                     </div>
+                    
                     
                     
                 </nav>

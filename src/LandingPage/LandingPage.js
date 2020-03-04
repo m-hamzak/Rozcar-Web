@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
 import './LandingPage.css'
 import DemoMap from '../Images/DemoMap.png'
-import slider2 from '../Images/slider2.jpg'
-import slider3 from '../Images/slider3.jpg'
 import slider2New from '../Images/slider2New.jpg'
-import image1 from '../Images/image1.jpg'
-import image2 from '../Images/image2.jpg'
-import rozcarlogo from '../Images/rozcarlogo.png'
 import google from '../Images/google.png'
+import apple from '../Images/apple.png'
 import TopNavigation from '../TopNavigation/TopNavigation'
 import Carousel from 'react-bootstrap/Carousel'
 import cur1 from '../Images/cur1.jpg'
-import appstore from '../Images/appstore.png'
 import airconditioned from '../Images/air-conditioned.png'
 import announcement from '../Images/announcement.png'
 import automatedmatching from '../Images/automated-matching.png'
@@ -58,7 +53,7 @@ class LandingPage extends Component {
         for(let i = 0; i< 3; i++) {
             table.push(
                 <div clasName="mySlides w3-animate-opacity">
-                    <img className="w3-image" id = "carouselone" src= {this.state.picArr[this.picIndex]} alt="Cur Image"></img>       
+                    <img className="w3-image" id = "carouselone" src= {this.state.picArr[this.picIndex]} alt="Cur Image" height = "250px"></img>       
                 </div>
             );
             this.picIndex++;
@@ -81,7 +76,7 @@ class LandingPage extends Component {
                 
             </div>
  
-            <a className="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick={(e) => this.plusDivs(1)}>Take Tour <i class="fa fa-angle-right"></i></a>
+            {/* <a className="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick={(e) => this.plusDivs(1)}>Take Tour <i class="fa fa-angle-right"></i></a> */}
 
 
             {/* App section */}
@@ -94,7 +89,7 @@ class LandingPage extends Component {
                         <p><span className="w3-xlarge">Take photos like a pro.</span> You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                         ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                             <img  id = "google" src = {google} height = "auto" width = "200px"></img>
-                            <img className = "w3-image" id = "apple" src = {appstore} height = "auto" width = "200px"></img>
+                            <img className = "w3-image" id = "apple" src = {apple} height = "auto" width = "200px"></img>
                         
                         
                     </div>
@@ -146,49 +141,49 @@ class LandingPage extends Component {
                 <p>Economical</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {secure} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {secure} id = "secure"  className="w" width="100" height="100"></img>
                 <p>Safe and Serve</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {inapphazard} id = "logoRozcar"  className="w" width="100" height="100"></img>
-                <p>App Hazard</p>
+                <img src = {inapphazard} id = "inapphazard"  className="w" width="100" height="100"></img>
+                <p>In App Hazard</p>
                 </div>
             </div>
 
             <div className="w3-row">
                 <div className="w3-col s3">
-                <img src = {airconditioned} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {airconditioned} id = "airconditioned"  className="w" width="100" height="100"></img>
                 <p>Air Conditional</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {vacationfee} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {vacationfee} id = "vacationfee"  className="w" width="100" height="100"></img>
                 <p>No fee for vaccation</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {nopeak} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {nopeak} id = "nopeak"  className="w" width="100" height="100"></img>
                 <p>No peak/Surge</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {automatedmatching} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {automatedmatching} id = "automatedmatching"  className="w" width="100" height="100"></img>
                 <p>Automated Matching process</p>
                 </div>
             </div>
             
             <div className="w3-row">
                 <div className="w3-col s3">
-                <img src = {communication} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {communication} id = "communication"  className="w" width="100" height="100"></img>
                 <p>Effective Communication</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {announcement} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {announcement} id = "announcement"  className="w" width="100" height="100"></img>
                 <p>Regular Announcement</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {erm} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {erm} id = "erm"  className="w" width="100" height="100"></img>
                 <p>ERM</p>
                 </div>
                 <div className="w3-col s3">
-                <img src = {easypayment} id = "logoRozcar"  className="w" width="100" height="100"></img>
+                <img src = {easypayment} id = "easypayment"  className="w" width="100" height="100"></img>
                 <p>Easy Payments</p>
                 </div>
             </div>
@@ -240,16 +235,15 @@ class LandingPage extends Component {
             </div> */}
             
                 {/* <!-- Footer --> */} 
-            <footer class="w3-container w3-padding-32 w3-light-grey w3-center w3-xlarge">
-                <div class="w3-section">
-                    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-                    <i class="fa fa-instagram w3-hover-opacity"></i>
-                    <i class="fa fa-snapchat w3-hover-opacity"></i>
-                    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-                    <i class="fa fa-twitter w3-hover-opacity"></i>
-                    <i class="fa fa-linkedin w3-hover-opacity"></i>
+            <footer className="w3-container w3-padding-32 w3-light-grey w3-center w3-xlarge">
+                <div className="w3-section">
+                    <i className="fa fa-facebook-official w3-hover-opacity"></i>
+                    <i className="fa fa-instagram w3-hover-opacity"></i>
+                    <i className="fa fa-snapchat w3-hover-opacity"></i>
+                    <i className="fa fa-twitter w3-hover-opacity"></i>
+                    <i className="fa fa-linkedin w3-hover-opacity"></i>
                 </div>
-                    <p class="w3-medium">Powered by 2 minut Networks</p>
+                    <p className="w3-medium">Powered by 2 minut Networks</p>
                
 
 
