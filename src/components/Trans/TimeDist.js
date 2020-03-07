@@ -214,16 +214,30 @@ class TimeDist extends Component{
     }
 
     getWholeGooglePath(Route){
+        console.log("Router",Route,this.state.PickRadioBtn)
+        var Router = Route;
+        if(this.state.PickRadioBtn === false){
+            for(let l = 0; l < Router.length; l ++){
+                if(Router[l].status === "Pick"){
+                    Router[l].status = "Drop"
+                }else{
+                    Router[l].status = "Pick"
+                }
+            }
+            console.log("Updated Router",Router)
+        }
         var Points = []
-        for(let i = 0; i < Route.length; i ++){
+        for(let i = 0; i < Router.length; i ++){
             for(let j = 0; j < this.props.UserProfile.length; j ++){
-                if(Route[i].ID === this.props.UserProfile[j].UserID){
+                if(Router[i].ID === this.props.UserProfile[j].UserID){
                     var point;
-                    if(Route[i].status === "Pick"){
+                    if(Router[i].status === "Pick"){
                         point = this.props.PickupLocation[j]
                     }else{
                         point = this.props.DropOffLocation[j]
                     }
+                    
+                
                     Points.push(point)
                     break;
                 }

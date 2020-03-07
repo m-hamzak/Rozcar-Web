@@ -22,7 +22,7 @@ import Captains from './components/VendorsCaptainsCars/Captains'
 import Cars from './components/VendorsCaptainsCars/Car'
 import VendorsCaptainCar from './components/VendorsCaptainsCars/VendorsCarsAndCaptain'
 import CaptainProfile from './components/VendorsCaptainsCars/CaptainProfile'
-import LogIn from './LoginSignUpPages/LogIn'
+import LogIn from './LoginSignUpPages/Login'
 import Signup from './LoginSignUpPages/Signup'
 
 import Trans from './components/Trans/Trans'
