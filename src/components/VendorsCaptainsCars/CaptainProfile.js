@@ -55,7 +55,7 @@ class CaptanProfiles extends Component{
                             <h6>Full Name: </h6>        
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="captainname" className="form-control" 
                             defaultValue={this.state.captain !== null ? this.state.captain["name"]: null}></input>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ class CaptanProfiles extends Component{
                             <h6>Phone Number: </h6>        
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="captainphone" className="form-control" 
                             defaultValue={this.state.captain !== null ? this.state.captain["phone"]: null}></input>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ class CaptanProfiles extends Component{
                             <h6>Alternate Phone Number: </h6>        
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="captainaltphone" className="form-control" 
                             defaultValue={this.state.captain !== null ? this.state.captain["alternatePhone"]: null}></input>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ class CaptanProfiles extends Component{
                             <h6>Current Car: </h6>        
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="captaincar" className="form-control" 
                             defaultValue={this.state.captain !== null ? this.state.captain["currentcar"]: null}></input>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ class CaptanProfiles extends Component{
 
                     <div className="row">
                         <div className="col-md-9 col-lg-9 mt-3">
-                            <button type="button" className="btn btn-primary float-right">Update</button>
+                            <button type="button" onClick={(e) => this.FieldsUpdated()} className="btn btn-primary float-right">Update</button>
                         </div>
                     </div>
                     
@@ -122,6 +122,22 @@ class CaptanProfiles extends Component{
             </div>
         )
     };
+
+    FieldsUpdated = () => {
+        console.log("IDD",this.props.match.params.id);
+        firebase.database()
+        .ref()
+        .child("Driver2/Captain")
+        .child(this.props.match.params.id)
+        .update({
+            name : document.getElementById("captainname").value,
+            phone : document.getElementById("captainphone").value,
+            alternatePhone : document.getElementById("captainaltphone").value,
+            currentcar : document.getElementById("captaincar").value,
+        }).then(() =>{
+            alert("Fields Updated")
+        })
+    }
 
 }
 

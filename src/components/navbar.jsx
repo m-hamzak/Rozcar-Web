@@ -64,6 +64,12 @@ const NavBar = ({ routeData }) => {
             </li>
 
             <li className="nav-item">
+              <NavLink className="nav-link" to="/admin/cms">
+                CMS
+            </NavLink>
+            </li>
+
+            <li className="nav-item">
               <NavLink className="nav-link" to="/admin/logout">
                 Logout
             </NavLink>

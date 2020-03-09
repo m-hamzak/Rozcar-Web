@@ -198,6 +198,9 @@ class TimeDist extends Component{
         var str = document.getElementById("Selector"+i)
         .options[document.getElementById("Selector"+i).selectedIndex].value;
         console.log("str",str)
+        if(str === 'none'){
+            return;
+        }
         this.setMembersAccordingToSelector("Selector"+i,i,str);
         // console.log("str",str)
         // console.log("e",e.target.name)

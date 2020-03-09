@@ -115,7 +115,7 @@ class VendorDetails extends Component{
                             <h6>Full Name: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" defaultValue={this.state.vendor["name"]} ></input>
+                            <input id="vendorname" type="text" className="form-control" defaultValue={this.state.vendor["name"]} ></input>
                         </div>
                     </div>
 
@@ -124,7 +124,7 @@ class VendorDetails extends Component{
                             <h6>Phone Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" defaultValue={this.state.vendor["phone"]} ></input>
+                            <input type="text" id="vendorphone" className="form-control" defaultValue={this.state.vendor["phone"]} ></input>
                         </div>
                     </div>
 
@@ -133,7 +133,7 @@ class VendorDetails extends Component{
                             <h6>Alternate Phone Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" defaultValue={this.state.vendor["alternatePhone"]} ></input>
+                            <input type="text" id="vendoraltph" className="form-control" defaultValue={this.state.vendor["alternatePhone"]} ></input>
                         </div>
                     </div>
 
@@ -142,7 +142,7 @@ class VendorDetails extends Component{
                             <h6>IBAN Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" defaultValue={this.state.vendor["iban"]} ></input>
+                            <input type="text" id="vendoriban" className="form-control" defaultValue={this.state.vendor["iban"]} ></input>
                         </div>
                     </div>
 
@@ -151,7 +151,7 @@ class VendorDetails extends Component{
                             <h6>CNIC Number: </h6>
                         </div>
                         <div className="col-md-6 col-lg-6 mt-3">
-                            <input type="text" className="form-control" defaultValue={this.state.vendor["cnicNo"]} ></input>
+                            <input type="text" id="vendorcnic" className="form-control" defaultValue={this.state.vendor["cnicNo"]} ></input>
                         </div>
                     </div>
 
@@ -176,15 +176,30 @@ class VendorDetails extends Component{
 
                     <div className="row">
                         <div className="col-md-9 col-lg-9 mt-3">
-                            <button type="button" className="btn btn-primary float-right">Update</button>
+                            <button type="button" onClick={(e) => this.UpdateFields()} className="btn btn-primary float-right">Update</button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         )
         return layout
+    }
+
+    UpdateFields = () => {
+        console.log("IDD",this.props.match.params.id)
+        firebase.database()
+        .ref()
+        .child("Driver2/Vendor")
+        .child(this.props.match.params.id)
+        .update({
+            name : document.getElementById("vendorname").value,
+            phone : document.getElementById("vendorphone").value,
+            alternatePhone : document.getElementById("vendoraltph").value,
+            iban : document.getElementById("vendoriban").value,
+            cnicNo : document.getElementById("vendorcnic").value,
+        }).then(() => {
+            alert("Fields Updated")
+        })
     }
 
 

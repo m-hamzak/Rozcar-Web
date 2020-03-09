@@ -24,7 +24,7 @@ import VendorsCaptainCar from './components/VendorsCaptainsCars/VendorsCarsAndCa
 import CaptainProfile from './components/VendorsCaptainsCars/CaptainProfile'
 import LogIn from './LoginSignUpPages/Login'
 import Signup from './LoginSignUpPages/Signup'
-
+import CMS from './components/CMS/cms'
 import Trans from './components/Trans/Trans'
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
 
       <React.Fragment>
         <Switch>
-          <Route path="/admin/userlist/profile/:id" component ={CustomerProfile}></Route>
+          <AppRoute NavBar={NavBar} path="/admin/userlist/profile/:id" component ={CustomerProfile} />
           <AppRoute NavBar={NavBar} name="UserList" path="/admin/userlist" component={UserList} />
           <AppRoute NavBar={NavBar} name="register" path="/admin/register" component={MainForm} />
           <AppRoute NavBar={NavBar} name="map" path="/admin/map" component={MapInfo} />
@@ -45,16 +45,16 @@ class App extends Component {
           <AppRoute NavBar={NavBar} name="Captains" path="/admin/captains" component={Captains} />
           <AppRoute NavBar={NavBar} name="Cars" path="/admin/cars" component={Cars} />
           <AppRoute NavBar={NavBar} name="login" path="/admin/login" component={Login} /> 
-           <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Transcription} />
-           <AppRoute NavBar={NavBar} name = "transGroup" path="/admin/transGroup/:id" component={Trans}/> 
-          
-           <AppRoute NavBar={NavBar} name="logout" path="/admin/logout" component={Logout} />
+          <AppRoute NavBar={NavBar} name="trans" path="/admin/trans" component={Transcription} />
+          <AppRoute NavBar={NavBar} name = "transGroup" path="/admin/transGroup/:id" component={Trans}/> 
+          <AppRoute NavBar={NavBar} name="logout" path="/admin/logout" component={Logout} />
           <AppRoute NavBar={NavBar} name="group" path="/admin/group/:id" component={GroupDetail} />
           <AppRoute NavBar={NavBar} name="user" path="/admin/user/:id" component={User} />
+          <AppRoute NavBar={NavBar} name="user" path="/admin/cms" component={CMS} />
           <AppRoute NavBar={NavBar} name="admin" path="/admin" component={Landing} />
           <Route name = "LogIn" path = "/LogIn" component = {LogIn}/>
           <Route name = "signup" path = "/Signup" component = {Signup}/>
-           <Route name = "LandingPage" path = "/" component = {LandingPage}/>
+          <Route name = "LandingPage" path = "/" component = {LandingPage}/>
           {/* <AppRoute NavBar={NavBar} name="client" path="/" component={ClientPage} /> */}
           
         </Switch>

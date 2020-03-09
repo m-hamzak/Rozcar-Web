@@ -38,7 +38,7 @@ class UserCompleteData extends Component{
                             <h6>First Name: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="firstname" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Name"]: null} ></input>
                         </div>
 
@@ -46,7 +46,7 @@ class UserCompleteData extends Component{
                             <h6>Last Name: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="lastname" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["LastName"]: null} ></input>
                         </div>
                     </div>
@@ -57,7 +57,7 @@ class UserCompleteData extends Component{
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
                             <input type="text" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["Email"]: null}></input>
+                            defaultValue={this.state.User !== null ? this.state.User["Email"]: null} readOnly></input>
                         </div>
 
                         <div className="col-md-2 col-lg-2 mt-3">
@@ -75,7 +75,7 @@ class UserCompleteData extends Component{
                             <h6>Phone Number: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="PhoneNumber" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Phone"]: null} ></input>
                         </div>
 
@@ -83,7 +83,7 @@ class UserCompleteData extends Component{
                             <h6>Member Number: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="MemberNo"  className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["MemberNo"]: null} ></input>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ class UserCompleteData extends Component{
                             <h6>Occupation: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="occupation" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Occupation"]: null}></input>
                         </div>
 
@@ -104,7 +104,7 @@ class UserCompleteData extends Component{
                             <h6>Institute Name: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control"
+                            <input type="text" id="institutename" className="form-control"
                             defaultValue={this.state.User !== null ? this.state.User["InstituteName"]: null} ></input>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ class UserCompleteData extends Component{
                             <h6>Office Address: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="officeaddress" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["OfficeAddress"]: null} ></input>
                         </div>
 
@@ -123,7 +123,7 @@ class UserCompleteData extends Component{
                             <h6>Residential Address: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="residentialaddress" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["ResidentialAddress"]: null} ></input>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ class UserCompleteData extends Component{
                             <h6>Group ID: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="groupID" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["GroupID"]: null} ></input>
                         </div>
 
@@ -142,7 +142,7 @@ class UserCompleteData extends Component{
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
                             <input type="text" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["DropArea"]: null} ></input>
+                            defaultValue={this.state.User !== null ? this.state.User["DropArea"]: null} readOnly></input>
                         </div>
                     </div>
 
@@ -152,8 +152,11 @@ class UserCompleteData extends Component{
                             <h6>Drop Leader: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["DropLeader"]: null} ></input>
+                            <select type="text" id="dropleader" className="form-control" 
+                            defaultValue={this.state.User !== null ? this.state.User["DropLeader"]: null} >
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
                         </div>
 
                         <div className="col-md-2 col-lg-2 mt-3">
@@ -170,7 +173,7 @@ class UserCompleteData extends Component{
                             <h6>Starting Date: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="startingdate" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["StartingDate"]: null} ></input>
                         </div>
 
@@ -179,7 +182,7 @@ class UserCompleteData extends Component{
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
                             <input type="text" className="form-control" 
-                            defaultValue={this.state.User !== null ? this.state.User["Time"]: null} ></input>
+                            defaultValue={this.state.User !== null ? this.state.User["Time"]: null} readOnly></input>
                         </div>
                     </div>
 
@@ -290,7 +293,7 @@ class UserCompleteData extends Component{
 
                     <div className="row">
                         <div className="col-md-12 col-lg-12 mt-3">
-                            <button type="button" className="btn btn-primary float-right ml-2">Update</button>
+                            <button type="button" onClick={(e) => this.UpdateFields()} className="btn btn-primary float-right ml-2">Update</button>
                             <button type="button" className="btn btn-danger float-right ml-2"><i className="fa fa-ban mr-2"></i>Block</button>
                             <button type="button" className="btn btn-warning float-right"><i className="fa fa-close mr-2"></i>Reject</button>
                         </div>
@@ -301,6 +304,18 @@ class UserCompleteData extends Component{
             </div>
         )
     };
+
+    UpdateFields = () => {
+        //yahan update krny per saari fields update hungi
+        console.log("IDD",this.props.match.params.id);
+        // firebase.database()
+        // .ref()
+        // .child("User2/UserInfo")
+        // .child(this.props.match.params.id)
+        // .update({
+
+        // })
+    }
 }
 
 export default UserCompleteData
