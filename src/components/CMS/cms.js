@@ -13,6 +13,10 @@ class CMS extends Component{
         return (
             <div>
                 Content Management System
+                <label> - Image Slider Changes</label>
+                <label> - Who we are? Changes</label>
+                <label> - Why Rozcar Content Changes</label>
+                <label> - Package Management Changes</label>
             </div>
         )
     }
