@@ -41,6 +41,7 @@ class UserCompleteData extends Component{
                             <input type="text" id="firstname" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Name"]: null} ></input>
                         </div>
+                        
 
                         <div className="col-md-2 col-lg-2 mt-3">
                             <h6>Last Name: </h6>        
@@ -64,7 +65,7 @@ class UserCompleteData extends Component{
                             <h6>Gender: </h6>        
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <input type="text" className="form-control" 
+                            <input type="text" id="gender" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Gender"]: null}></input>
                         </div>
                     </div>
@@ -313,7 +314,26 @@ class UserCompleteData extends Component{
         // .child("User2/UserInfo")
         // .child(this.props.match.params.id)
         // .update({
-
+        //     Name: document.getElementById("firstname").value,
+        //     LastName : document.getElementById("lastname").value,
+        //     LeaderBool : document.getElementById("firstname").value,
+        //     Phone : document.getElementById("PhoneNumber").value,
+        //     MemberNo : document.getElementById("MemberNo").value,
+        //     Occupation : document.getElementById("firstname").value,
+        //     OfficeAddress: document.getElementById("firstname").value,
+        //     ResidentialAddress : document.getElementById("lastname").value,
+        //     InstituteName : "",
+        //     LeaderBool : document.getElementById("firstname").value,
+        //     StartingDate : document.getElementById("PhoneNumber").value,
+        //     PickLeader : document.getElementById("MemberNo").value,
+        //     DropLeader : document.getElementById("firstname").value,
+        //     GroupID : "",
+        //     FormOne : "",
+        //     FormTwo : "",
+        //     FormThree : "",
+        //     Gender : "",
+        //     Package : "none",
+        //     Transcribed : "",
         // })
     }
 }
