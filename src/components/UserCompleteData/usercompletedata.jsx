@@ -121,7 +121,7 @@ class UserCompleteData extends Component{
                         </div>
 
                         <div className="col-md-2 col-lg-2 mt-3">
-                            <h6>Residential Address: </h6>        
+                            <h6>Residential Address: </h6>     
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
                             <input type="text" id="residentialaddress" className="form-control" 
@@ -192,7 +192,7 @@ class UserCompleteData extends Component{
                             <h6>Form One: </h6>   
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
+                            <select type="select" id="formone" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["FormOne"]: null} >
                                 <option value="true">True</option>
                                 <option value="false">False</option>
@@ -203,7 +203,7 @@ class UserCompleteData extends Component{
                             <h6>Form Two: </h6>   
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
+                            <select type="select" id="formtwo" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["FormTwo"]: null} >
                                 <option value="true">True</option>
                                 <option value="false">False</option>
@@ -217,7 +217,7 @@ class UserCompleteData extends Component{
                             <h6>Form Three: </h6>   
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
+                            <select type="select" id="formthree" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["FormThree"]: null} >
                                 <option value="true">True</option>
                                 <option value="false">False</option>
@@ -242,7 +242,7 @@ class UserCompleteData extends Component{
                             <h6>Package: </h6>   
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
+                            <select type="select" id="package" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Package"]: null} >
                                 <option value="R1">R1</option>
                                 <option value="R2">R2</option>
@@ -258,7 +258,7 @@ class UserCompleteData extends Component{
                             <h6>Pick Leader: </h6>   
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
+                            <select type="select" id="pickleader" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["PickLeader"]: null} >
                                 <option value="true">True</option>
                                 <option value="false">False</option>
@@ -282,7 +282,7 @@ class UserCompleteData extends Component{
                             <h6>Transcribed: </h6>   
                         </div>
                         <div className="col-md-4 col-lg-4 mt-3">
-                            <select type="select" className="form-control" 
+                            <select type="select" id="transcribed" className="form-control" 
                             defaultValue={this.state.User !== null ? this.state.User["Transcribed"]: null} >
                                 <option value="true">True</option>
                                 <option value="false">False</option>
@@ -309,31 +309,54 @@ class UserCompleteData extends Component{
     UpdateFields = () => {
         //yahan update krny per saari fields update hungi
         console.log("IDD",this.props.match.params.id);
+        var userupdateddata = {
+            Name: document.getElementById("firstname").value,
+            LastName : document.getElementById("lastname").value,
+            LeaderBool : document.getElementById("firstname").value,
+            Phone : document.getElementById("PhoneNumber").value,
+            MemberNo : document.getElementById("MemberNo").value,
+            Occupation : document.getElementById("occupation").value,
+            OfficeAddress: document.getElementById("officeaddress").value,
+            ResidentialAddress : document.getElementById("residentialaddress").value,
+            InstituteName : document.getElementById("institutename").value,
+            LeaderBool : document.getElementById("firstname").value,
+            StartingDate : document.getElementById("PhoneNumber").value,
+            PickLeader : document.getElementById("MemberNo").value,
+            DropLeader : document.getElementById("dropleader").value,
+            GroupID : document.getElementById("groupID").value,
+            FormOne : document.getElementById("formone").value,
+            FormTwo : document.getElementById("formtwo").value,
+            FormThree : document.getElementById("formthree").value,
+            Gender : document.getElementById("gender").value,
+            Package : document.getElementById("package").value,
+            Transcribed : document.getElementById("transcribed").value,
+        }
+        console.log("USerDaat",userupdateddata)
         // firebase.database()
         // .ref()
         // .child("User2/UserInfo")
         // .child(this.props.match.params.id)
-        // .update({
+        // .update({     
         //     Name: document.getElementById("firstname").value,
         //     LastName : document.getElementById("lastname").value,
         //     LeaderBool : document.getElementById("firstname").value,
         //     Phone : document.getElementById("PhoneNumber").value,
         //     MemberNo : document.getElementById("MemberNo").value,
-        //     Occupation : document.getElementById("firstname").value,
-        //     OfficeAddress: document.getElementById("firstname").value,
-        //     ResidentialAddress : document.getElementById("lastname").value,
-        //     InstituteName : "",
+        //     Occupation : document.getElementById("occupation").value,
+        //     OfficeAddress: document.getElementById("officeaddress").value,
+        //     ResidentialAddress : document.getElementById("residentialaddress").value,
+        //     InstituteName : document.getElementById("institutename").value,
         //     LeaderBool : document.getElementById("firstname").value,
         //     StartingDate : document.getElementById("PhoneNumber").value,
         //     PickLeader : document.getElementById("MemberNo").value,
-        //     DropLeader : document.getElementById("firstname").value,
-        //     GroupID : "",
-        //     FormOne : "",
-        //     FormTwo : "",
-        //     FormThree : "",
-        //     Gender : "",
-        //     Package : "none",
-        //     Transcribed : "",
+        //     DropLeader : document.getElementById("dropleader").value,
+        //     GroupID : document.getElementById("groupID").value,
+        //     FormOne : document.getElementById("formone").value,
+        //     FormTwo : document.getElementById("formtwo").value,
+        //     FormThree : document.getElementById("formthree").value,
+        //     Gender : document.getElementById("gender").value,
+        //     Package : document.getElementById("firstnampackagee").value,
+        //     Transcribed : document.getElementById("transcribed").value,
         // })
     }
 }
