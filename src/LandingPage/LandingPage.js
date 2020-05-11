@@ -19,6 +19,7 @@ import nopeak from '../Images/no-peak.png'
 import secure from '../Images/secure.png'
 import timesaving from '../Images/time-saving.png'
 import vacationfee from '../Images/vacation-fee.png'
+import LogIn from '../LoginSignUpPages/Login';
 
 class LandingPage extends Component {
 
@@ -70,16 +71,9 @@ class LandingPage extends Component {
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins"/> 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-             <div clasName="mySlides w3-animate-opacity">
-                <img className="w3-image" src= {slider2New} alt="Image 2"></img>
-                
-                
-            </div>
- 
-            {/* <a className="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick={(e) => this.plusDivs(1)}>Take Tour <i class="fa fa-angle-right"></i></a> */}
+             <div className = "banner">
 
-
-            {/* App section */}
+             </div>
 
             <div className="w3-padding-64 w3-white">
                 <div className="w3-row-padding">
