@@ -49,7 +49,7 @@ class TopNavigation extends Component {
                                         </li>
                                         <div className="vl"></div>
                                         {/* <li className = "nav-item"> */}
-                                            <button type = "button" onClick={e => this.OpenInfo('Register')} className = "header-button">REGISTER NOW</button>
+                                            <button type = "button" className = "header-button">REGISTER NOW</button>
                                         {/* </li> */}
                                     </ul>
                                 </nav>
