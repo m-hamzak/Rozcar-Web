@@ -19,7 +19,6 @@ import nopeak from '../Images/no-peak.png'
 import secure from '../Images/secure.png'
 import timesaving from '../Images/time-saving.png'
 import vacationfee from '../Images/vacation-fee.png'
-import LogIn from '../LoginSignUpPages/Login';
 
 class LandingPage extends Component {
 
@@ -66,7 +65,7 @@ class LandingPage extends Component {
         return(
 
         <div>
-            <TopNavigation/>
+           <TopNavigation/>
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins"/> 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>

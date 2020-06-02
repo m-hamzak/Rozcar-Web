@@ -12,7 +12,7 @@ class TopNavigation extends Component {
         
         }
     }
-    OpenInfo = (register) => {
+    OpenInfo = () => {
         this.props.history.push('/register/');
     }
    
@@ -49,7 +49,7 @@ class TopNavigation extends Component {
                                         </li>
                                         <div className="vl"></div>
                                         {/* <li className = "nav-item"> */}
-                                            <button type = "button" className = "header-button">REGISTER NOW</button>
+                                            <button type = "button" className = "header-button" to = "/userlogin">REGISTER NOW</button>
                                         {/* </li> */}
                                     </ul>
                                 </nav>
